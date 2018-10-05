@@ -1,0 +1,16 @@
+{
+    "things": [
+        {
+            "url": "images/1.jpg",
+            "caption": "Иринка 1"
+        },
+        {
+            "url": "images/2.jpg",
+            "caption": "Иринка 2"
+        },
+        {
+            "url": "images/3.jpg",
+            "caption": "Иринка 3"
+        }
+    ]
+}
