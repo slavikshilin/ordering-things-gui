@@ -4,6 +4,28 @@ import { FirebaseConfig } from "./config/keys";
 import './App.css'
 
 firebase.initializeApp(FirebaseConfig);
+
+
+/*
+firebase.auth().signInWithEmailAndPassword('slavikshilin@rambler.ru', 'pasword')
+.then((credential) => {
+    console.log(JSON.stringify(credential))    
+})
+.catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log(errorMessage);
+});
+*/
+
+firebase.auth().signOut().then(function() {
+    // Sign-out successful.
+  }).catch(function(error) {
+    // An error happened.
+  });
+
+
 var storage = firebase.storage();
 var storageRef = storage.ref();
 
