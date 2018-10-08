@@ -1,14 +1,119 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.body-main {
+  background: #f0f2f5;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.login-form {
+  max-width: 300px;
+}
+
+.login-form-message {
+  max-width: 500px;
+}
+
+.login-form-button {
+  width: 100%;
+}
+
+.ant-layout-footer {
+  margin-top: 10%;
+}
+
+#footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 10px;
+  margin-top: 50px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  width: 100%;
+}
+
+.main-layout {
+  min-width: 1200px;
+  max-width: 1200px;
+  padding: 20px;  
+  margin: 0 auto;
+}
+
+.auth-header {
+  text-align: right;  
+  margin: 5px;  
+}
+
+.main-footer {
+  text-align: left;  
+}
+
+.auth-link {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+
+.auth-link:hover {
+  text-decoration: none;
+}
+
+.auth-link-logged {
+  color: #7f8184;
+}
+
+.ant-select-dropdown-menu-all {
+  width: 350px;
+}
+
+.ant-input.ant-select-search__field {
+  text-transform: uppercase;
+}
+
+.ant-select-dropdown-menu.ant-select-dropdown-menu-root.ant-select-dropdown-menu-vertical {
+  max-height: 350px;
+}
+
+.main-caption {
+  font-size: x-large;
+  padding: 10px;  
+}
+
+.main-control {
+  display: -webkit-flex;
+  -webkit-justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-search {
+  width: 230px;  
+}
+
+.main-content-body {
+  padding-top: 10px;  
+}
+
+.btn-car-group {
+  margin-right: 10px;
+  margin-bottom: 10px;    
+}
+
+.field-validation-error-tip {
+  background: red;
+  color: #fff;
+  display: block;
+  font-size: 12px;
+  position: absolute;
+  left: -10000px;
+  padding-left: 5px;
+  padding-right: 5px;  
+  text-align: center;
+  z-index: 10;
+  zoom: 1;
+  white-space: normal;
+  border-radius: 5px;
+  -webkit-box-shadow: -1px 0 3px #666;
+  box-shadow: -1px 0 3px #666;
+}
+
+.main-tab-item {
+  width: 400px;
 }
