@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Tabs } from 'antd';
 import AuthHeader from './authHeader'
+import TabContainer from './tabContainer'
 import { getUserInfo } from '../core/utils/userInfo'
 
 const TabPane = Tabs.TabPane;
@@ -21,12 +22,9 @@ class Home extends Component {
         return (
             <div className="main-layout">
                 <AuthHeader userInfo={getUserInfo(auth)} history={history} fetchLogoutAction={fetchLogoutAction} />
-                <div className="main-caption">
-                    Каталог
-                </div>
                 <div align="left" tabBarGutter="1000">
-                    <Tabs defaultActiveKey="1" onChange={callback} className="main-tab-item">
-                        <TabPane tab="Одежда" key="1">Одежда</TabPane>
+                    <Tabs defaultActiveKey="1" onChange={callback}>
+                        <TabPane tab="Одежда" key="1"><TabContainer tabName="Одежда" key="1"/></TabPane>
                         <TabPane tab="Обувь" key="2">Обувь</TabPane>
                         <TabPane tab="Аксессуары">Аксессуары</TabPane>
                     </Tabs>
