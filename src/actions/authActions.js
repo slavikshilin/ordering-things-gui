@@ -1,6 +1,6 @@
 import { getLogin, getLogout } from '../core/api/apiMethods'
 import { clearLocalStorage, setLocalStorage } from '../core/utils/userInfo'
-import * as firebase from 'firebase';
+//import * as firebase from 'firebase';
 
 export const REQUEST_LOGIN = 'REQUEST_LOGIN'
 export const REQUEST_LOGIN_SUCCESS = 'REQUEST_LOGIN_SUCCESS'

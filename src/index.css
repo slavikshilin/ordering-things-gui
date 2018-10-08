@@ -32,7 +32,10 @@
 .main-layout {
   min-width: 1200px;
   max-width: 1200px;
-  padding: 20px;  
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-bottom: 50px;
+  padding-left: 20px;
   margin: 0 auto;
 }
 
@@ -121,3 +124,22 @@
 .p-card {
   margin: 0;
 }
+
+.btn-add-thing > .ant-upload.ant-upload-select-picture-card {
+  margin-left: auto;
+  margin-right: 0;
+  background-color: #1890ff;
+}
+
+.btn-add-thing-text .ant-upload-text {
+  color: white;
+}
+
+/* you can make up upload button and sample style by using stylesheets */
+.ant-upload-select-picture-card i {
+  font-size: 32px;
+  color: white;
+  margin-left: auto;
+  margin-right: 0;     
+}
+

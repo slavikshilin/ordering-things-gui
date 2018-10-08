@@ -20,3 +20,26 @@ export function getLogin(user, password) {
 export function getLogout() {
 	return firebase.auth().signOut();
 }
+
+/**
+ * Добавление файла в хранилище
+ * @param {File} file Файл  
+ * @param {File} fileName Имя файла   
+ * @returns {Promise<Object>}
+ */
+export function addFile(file, fileName) {
+	var storageRef = firebase.storage().ref();
+	var mountainImagesRef = storageRef.child(`images/${fileName}.jpg`);	
+	return mountainImagesRef.put(file);
+}
+
+/**
+ * Удаление файла в хранилище
+ * @param {File} fileName Имя файла   
+ * @returns {Promise<Object>}
+ */
+export function removeFile(fileName) {
+	var storageRef = firebase.storage().ref();
+	var mountainImagesRef = storageRef.child(`images/${fileName}.jpg`);	
+	return mountainImagesRef.delete();
+}
