@@ -43,3 +43,23 @@ export function removeFile(fileName) {
 	var mountainImagesRef = storageRef.child(`images/${fileName}.jpg`);	
 	return mountainImagesRef.delete();
 }
+
+/**
+ * Получение URL для скачивания файла
+ * @param {File} path путь в хранилище   
+ * @returns {Promise<Object>}
+ */
+export function getDownloadUrl(path) {
+	var storageRef = firebase.storage().ref();
+	return storageRef.child(path).getDownloadURL()	
+}
+
+/**
+ * Получение списка объектов БД
+ * @returns {Promise<Object>}
+ */
+export function getData(filter) {
+	var database = firebase.database();
+	var databaseRef = database.ref('things')
+	return databaseRef.once("value");
+}

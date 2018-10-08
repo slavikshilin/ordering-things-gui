@@ -63,6 +63,9 @@ class TabContainer extends Component {
     }
 
     render() {  
+
+        const thingsInfo = (this.props.thingsInfo) ? this.props.thingsInfo : [];
+
         const description = (
             <div>
                 <p className="p-card">Размер:</p>
@@ -78,7 +81,7 @@ class TabContainer extends Component {
             </div>
         );
     
-        const imageUrl = this.state.imageUrl;        
+        //const imageUrl = this.state.imageUrl;        
 
         return (
             <div>
@@ -96,7 +99,7 @@ class TabContainer extends Component {
 
                 <List
                     grid={{ gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 3 }}
-                    dataSource={data}
+                    dataSource={thingsInfo}
                     renderItem={item => (
                         <List.Item>
                             <Card
@@ -104,7 +107,7 @@ class TabContainer extends Component {
                                 style={{ width: 380 }}
                                 cover={<img alt="example" src="https://firebasestorage.googleapis.com/v0/b/ordering-things-api.appspot.com/o/maket%2Fmaket.jpg?alt=media&token=1a157331-ead3-400a-a145-31fb2f30be5c" />}>
                                 <Meta
-                                    title={item.title}
+                                    title={item.caption}
                                     description={description} />
                             </Card>
                         </List.Item>
