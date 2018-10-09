@@ -31,7 +31,7 @@
 
 .main-layout {
   min-width: 1200px;
-  max-width: 1200px;
+  max-width: 800px;
   padding-top: 20px;
   padding-right: 20px;
   padding-bottom: 50px;
@@ -123,23 +123,76 @@
 
 .p-card {
   margin: 0;
+  font-size: 12px;
+  margin: 0;
 }
 
-.btn-add-thing > .ant-upload.ant-upload-select-picture-card {
+.btn-add-thing .ant-upload.ant-upload-select-picture-card {
   margin-left: auto;
   margin-right: 0;
   background-color: #1890ff;
+}
+
+.btn-add-thing {
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: 0;
+  background-color: #1890ff;
+  width: 80px;
+  height: 60px;
+  border-radius: 4px;  
+  border: 1px dashed #d9d9d9;
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.btn-add-thing:hover {
+  border: 1px #d9d9d9;
+}
+
+.btn-add-thing-content {
+  margin: auto;
 }
 
 .btn-add-thing-text .ant-upload-text {
   color: white;
 }
 
+.btn-add-thing .ant-upload-text {
+  color: white;
+}
+
+.ant-card-meta-title {
+  font-size: 14px;
+}
+
+.ant-card-meta-detail > div:not(:last-child) {
+  margin-bottom: 0;
+}
+
+.ant-card-body {
+  padding: 8px;
+}
+
 /* you can make up upload button and sample style by using stylesheets */
-.ant-upload-select-picture-card i {
-  font-size: 32px;
+.anticon {
+  font-size: 18px;
   color: white;
   margin-left: auto;
   margin-right: 0;     
+}
+
+.btn-add-file > .ant-upload.ant-upload-select-picture-card {
+  width: 80px;
+  height: 60px;  
+  margin-left: auto;
+  margin-right: 0;
+  background-color: #1890ff;
+}
+
+.btn-add-file-text .ant-upload-text {
+  color: white;
 }
 

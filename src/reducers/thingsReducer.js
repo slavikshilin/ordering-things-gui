@@ -1,4 +1,4 @@
-import { REQUEST_THING, REQUEST_THING_SUCCESS, REQUEST_THING_FAILED } from '../actions/thingActions'
+import { REQUEST_THING, REQUEST_THING_SUCCESS, REQUEST_THING_FAILED } from '../actions/thingsActions'
 
 const initialState = {
     thingsInfo: null,

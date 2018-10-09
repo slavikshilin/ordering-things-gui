@@ -1,4 +1,4 @@
-import { addFile, removeFile, getData } from '../core/api/apiMethods'
+import { addFile, removeFile, getData, getDownloadUrl } from '../core/api/apiMethods'
 
 export const REQUEST_THING = 'REQUEST_THING'
 export const REQUEST_THING_SUCCESS = 'REQUEST_THING_SUCCESS'
@@ -31,16 +31,31 @@ export function fetchThings(filter) {
 
         getData(filter)
             .then((snapshot) => {
-                console.log(JSON.stringify(snapshot.val()))
-                dispatch(requestThingSuccess(snapshot.val()));
-            }
-            )
-            .catch(
-                err => {
-                    console.log(err);
-                    dispatch(requestThingError(new Error(err)))
-                }
-            )
+
+                var things = snapshot.val();
+                var count = 0;
+                things.forEach(el => {
+                    
+                    getDownloadUrl(el.url)
+                        .then( imageUrl => {
+                            el.imageUrl = imageUrl;
+                            console.log(el.imageUrl);
+                            count++;
+                            if (count === things.length) {
+                                dispatch(requestThingSuccess(things));                            
+                            }
+                        })
+                        .catch(
+                            err => {
+                                throw new Error(err);
+                            }
+                        )
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                dispatch(requestThingError(new Error(err)))
+            })
     }
 }
 

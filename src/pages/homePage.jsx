@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { fetchLogout } from '../actions/authActions' 
-import { fetchThings } from '../actions/thingActions'  
+import { fetchAdd } from '../actions/storageActions'
+import { fetchThings } from '../actions/thingsActions'
 import Home from '../components/home'
 import Splash from '../components/splash'
 
@@ -15,6 +16,7 @@ class HomePage extends Component {
             things,
             history,
             fetchLogoutAction,
+            fetchAddAction,
             fetchDataAction
         } = this.props
 
@@ -29,7 +31,8 @@ class HomePage extends Component {
                     things={things}
                     history={history}
                     fetchLogoutAction={fetchLogoutAction}
-                    fetchDataAction={fetchDataAction} />
+                    fetchDataAction={fetchDataAction}
+                    fetchAddAction={fetchAddAction} />
             )
         }
     }
@@ -45,7 +48,8 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchLogoutAction: (history) => dispatch(fetchLogout(history)),
-        fetchDataAction: (filter) => dispatch(fetchThings(filter))
+        fetchDataAction: (things) => dispatch(fetchThings(things)),        
+        fetchAddAction: (file) => dispatch(fetchAdd(file))
     }
 }
 
