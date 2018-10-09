@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { List, Card, Upload, Icon, message } from 'antd';
+import AddThingButton from './addThing/addThingButton'
 
 const { Meta } = Card;
 
@@ -52,6 +53,10 @@ class TabContainer extends Component {
 
         const thingsInfo = (this.props.thingsInfo) ? this.props.thingsInfo : [];
 
+        const { fetchAddThingAction } = this.props; 
+
+        const thingDemo = { caption: 'Макет 4', url: 'images/maket-4.jpg' };
+
         const description = (
             <div>
                 <p className="p-card">Размер:</p>
@@ -63,7 +68,7 @@ class TabContainer extends Component {
         const uploadButton = (
             <div>
                 <Icon type={false ? 'loading' : 'plus'} />
-                <div className="ant-upload-text">Добавить</div>
+                <div className="ant-upload-text">Доб. ф</div>
             </div>
         );
     
@@ -71,6 +76,7 @@ class TabContainer extends Component {
     
         return (
             <div>
+                <AddThingButton thingDemo={thingDemo} fetchAddThingAction={fetchAddThingAction} />
                 <Upload 
                     accept="image/*"
                     name="avatar"

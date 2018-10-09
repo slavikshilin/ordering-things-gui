@@ -46,20 +46,34 @@ export function removeFile(fileName) {
 
 /**
  * Получение URL для скачивания файла
- * @param {File} path путь в хранилище   
+ * @param {File} path Путь в хранилище   
  * @returns {Promise<Object>}
  */
 export function getDownloadUrl(path) {
 	var storageRef = firebase.storage().ref();
-	return storageRef.child(path).getDownloadURL()	
+	return storageRef.child(path).getDownloadURL();	
 }
 
 /**
  * Получение списка объектов БД
+ * @param {Object} filter Фильтр  
  * @returns {Promise<Object>}
  */
 export function getData(filter) {
 	var database = firebase.database();
-	var databaseRef = database.ref('things')
+	var databaseRef = database.ref('things');
 	return databaseRef.once("value");
+}
+
+/**
+ * Получение списка объектов БД
+ * @param {Object} thing Объект каталога   
+ * @returns {Promise<Object>}
+ */
+export function addThing(thing) {
+	var database = firebase.database();
+	var databaseRef = database.ref('things');
+	var newThingKey = databaseRef.push().key;
+	var newThingRef = database.ref('things/' + newThingKey)
+	return newThingRef.set(thing);
 }
