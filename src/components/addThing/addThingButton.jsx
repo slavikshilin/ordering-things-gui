@@ -16,7 +16,7 @@ const AddThingButton = (props) => {
             okText: 'OK',
             cancelText: 'Отмена',
             centered: true,
-            width: 1344,
+            width: 950,
             onOk() {
                 console.log('OK');
             },

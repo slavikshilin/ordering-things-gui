@@ -20,7 +20,7 @@ const Slider = (props) => {
     ]
 
     return (
-        <ImageGallery items={images} showPlayButton={false} />
+        <ImageGallery items={images} showPlayButton={false} showBullets={true} showThumbnails={false} />
     );
 
 }
