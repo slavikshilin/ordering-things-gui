@@ -95,9 +95,9 @@ class TabContainer extends Component {
                             <Card
                                 hoverable
                                 style={{ width: 180 }}
-                                cover={<img alt="example" src={item.imageUrl} />}>
+                                cover={<img alt="example" src={item.urls[0]} />}>
                                 <Meta
-                                    title={item.caption}
+                                    title={item.title}
                                     description={description} />
                             </Card>
                         </List.Item>

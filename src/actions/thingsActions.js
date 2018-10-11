@@ -31,26 +31,7 @@ export function fetchThings(filter) {
 
         getData(filter)
             .then((snapshot) => {
-
-                var things = snapshot.val();
-                var count = 0;
-                things.forEach(el => {
-                    
-                    getDownloadUrl(el.url)
-                        .then( imageUrl => {
-                            el.imageUrl = imageUrl;
-                            console.log(el.imageUrl);
-                            count++;
-                            if (count === things.length) {
-                                dispatch(requestThingSuccess(things));                            
-                            }
-                        })
-                        .catch(
-                            err => {
-                                throw new Error(err);
-                            }
-                        )
-                });
+                dispatch(requestThingSuccess(snapshot.val())); 
             })
             .catch(err => {
                 console.log(err);
