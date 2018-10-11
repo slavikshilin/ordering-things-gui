@@ -15,7 +15,7 @@ const AddThingButton = (props) => {
     */
 
     
-    const showConfirm = () => {
+    const showConfirm = (props) => {
         confirm({
             title: 'Добавление новой вещи',
             content: <AddThingContent />,
@@ -24,6 +24,7 @@ const AddThingButton = (props) => {
             centered: true,
             width: 560,
             onOk() {
+                props.fetchAddThingAction(props.thingType)
                 console.log('OK');
             },
             onCancel() {
@@ -34,7 +35,7 @@ const AddThingButton = (props) => {
     
     return (
         <Tooltip placement="topRight" title="Добавить новую вещь">
-            <div className="btn-add-thing" onClick={() => showConfirm()}>
+            <div className="btn-add-thing" onClick={() => showConfirm(props)}>
                 <div className="btn-add-thing-content">
                     <Icon type="plus" />
                 </div>

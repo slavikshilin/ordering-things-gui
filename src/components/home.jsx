@@ -3,6 +3,7 @@ import { Tabs, Spin } from 'antd';
 import AuthHeader from './authHeader'
 import TabContainer from './tabContainer'
 import { getUserInfo } from '../core/utils/userInfo'
+import { thingType } from '../types/index'
 
 const TabPane = Tabs.TabPane;
 
@@ -41,16 +42,16 @@ class Home extends Component {
                     <div align="left">
                         <Tabs defaultActiveKey="1" onChange={callback}>
                             <TabPane tab="Обувь" key="1">
-                                <TabContainer thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction}  tabName="Обувь" />
+                                <TabContainer thingType={thingType.BOOT} thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction}  tabName="Обувь" />
                             </TabPane>
                             <TabPane tab="Одежда" key="2">
-                                <TabContainer thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction} tabName="Одежда" />
+                                <TabContainer thingType={thingType.CLOTHES} thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction} tabName="Одежда" />
                             </TabPane>
                             <TabPane tab="Сумки и рюкзаки" key="3">
-                                <TabContainer thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction}  tabName="Сумки и рюкзаки" />                        
+                                <TabContainer thingType={thingType.BAG} thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction}  tabName="Сумки и рюкзаки" />                        
                             </TabPane>                            
                             <TabPane tab="Аксессуары" key="4">
-                                <TabContainer thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction}  tabName="Аксессуары" />                        
+                                <TabContainer thingType={thingType.ACCESSORIZE} thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction}  tabName="Аксессуары" />                        
                             </TabPane>
                         </Tabs>
                     </div>
