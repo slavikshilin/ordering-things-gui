@@ -1,14 +1,14 @@
 import React from 'react';
-import { Icon, Modal } from 'antd';
-import AddThingContent from './addThingContent'
-
-const confirm = Modal.confirm;
+import { Icon } from 'antd';
+//import AddThingContent from './addThingContent'
+import Slider from '../slider/slider'
+//const confirm = Modal.confirm;
 
 const AddThingButton = (props) => {
 
-    //const { thingDemo, fetchAddThingAction } = props;
+    const { gallery, toggleLightboxAction } = props;
 
-
+    /*
     const showConfirm = () => {
         confirm({
             title: 'Добавление новой вещи',
@@ -25,12 +25,18 @@ const AddThingButton = (props) => {
             },
         });
     }
+    */
+
+    const showSlider = () => {
+        toggleLightboxAction(0);
+    }
 
     return (
-        <div className="btn-add-thing" onClick={() => showConfirm()}>
+        <div className="btn-add-thing" onClick={() => showSlider()}>
             <div className="btn-add-thing-content">
                 <Icon type="plus" />
             </div>
+            <Slider gallery={gallery} toggleLightboxAction={toggleLightboxAction} />
         </div>
     )
 }

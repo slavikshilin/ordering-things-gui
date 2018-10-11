@@ -53,7 +53,7 @@ class TabContainer extends Component {
 
         const thingsInfo = (this.props.thingsInfo) ? this.props.thingsInfo : [];
 
-        const { fetchAddThingAction } = this.props; 
+        const { fetchAddThingAction, gallery, toggleLightboxAction } = this.props; 
 
         const thingDemo = { caption: 'Макет 4', url: 'images/maket-4.jpg' };
 
@@ -76,7 +76,7 @@ class TabContainer extends Component {
     
         return (
             <div>
-                <AddThingButton thingDemo={thingDemo} fetchAddThingAction={fetchAddThingAction} />
+                <AddThingButton thingDemo={thingDemo} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction}  />
                 <Upload 
                     accept="image/*"
                     name="avatar"

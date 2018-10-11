@@ -22,10 +22,12 @@ class Home extends Component {
         const {
             auth,
             things,
+            gallery,
             history,
             fetchLogoutAction,
             fetchAddThingAction,
-            fetchAddAction
+            fetchAddAction,
+            toggleLightboxAction
         } = this.props
 
         const { thingsInfo, isFetching } = things;
@@ -39,16 +41,16 @@ class Home extends Component {
                     <div align="left">
                         <Tabs defaultActiveKey="1" onChange={callback}>
                             <TabPane tab="Одежда" key="1">
-                                <TabContainer thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction} tabName="Одежда" />
+                                <TabContainer thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction} tabName="Одежда" />
                             </TabPane>
                             <TabPane tab="Обувь" key="2">
-                                <TabContainer thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction}  tabName="Обувь" />
+                                <TabContainer thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction}  tabName="Обувь" />
                             </TabPane>
                             <TabPane tab="Сумки и рюкзаки" key="3">
-                                <TabContainer thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction}  tabName="Сумки и рюкзаки" />                        
+                                <TabContainer thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction}  tabName="Сумки и рюкзаки" />                        
                             </TabPane>                            
                             <TabPane tab="Аксессуары" key="4">
-                                <TabContainer thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction}  tabName="Аксессуары" />                        
+                                <TabContainer thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction}  tabName="Аксессуары" />                        
                             </TabPane>
                         </Tabs>
                     </div>

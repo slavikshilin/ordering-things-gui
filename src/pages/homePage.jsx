@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
-import { fetchLogout } from '../actions/authActions' 
-import { fetchAdd } from '../actions/storageActions'
-import { fetchThings, fetchAddThing } from '../actions/thingsActions'
-import Home from '../components/home'
-import Splash from '../components/splash'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { fetchLogout } from '../actions/authActions'; 
+import { fetchAdd } from '../actions/storageActions';
+import { fetchThings, fetchAddThing } from '../actions/thingsActions';
+import { toggleLightbox } from '../actions/galleryActions';
+import Home from '../components/home';
+import Splash from '../components/splash';
 
 class HomePage extends Component {
 
@@ -14,11 +15,13 @@ class HomePage extends Component {
         const {
             auth,
             things,
+            gallery,
             history,
             fetchLogoutAction,
             fetchAddAction,
             fetchAddThingAction,
-            fetchDataAction
+            fetchDataAction,
+            toggleLightboxAction
         } = this.props
 
         if (auth.isFetching) {
@@ -30,11 +33,13 @@ class HomePage extends Component {
                 <Home
                     auth={auth}
                     things={things}
+                    gallery={gallery}
                     history={history}
                     fetchLogoutAction={fetchLogoutAction}
                     fetchDataAction={fetchDataAction}
                     fetchAddThingAction={fetchAddThingAction}
-                    fetchAddAction={fetchAddAction} />
+                    fetchAddAction={fetchAddAction}
+                    toggleLightboxAction={toggleLightboxAction} />
             )
         }
     }
@@ -43,7 +48,8 @@ class HomePage extends Component {
 const mapStateToProps = store => {
     return {
         auth: store.auth,
-        things: store.things
+        things: store.things,
+        gallery: store.gallery
     }
 }
 
@@ -52,7 +58,8 @@ const mapDispatchToProps = dispatch => {
         fetchLogoutAction: (history) => dispatch(fetchLogout(history)),
         fetchDataAction: (things) => dispatch(fetchThings(things)),      
         fetchAddThingAction: (thing) => dispatch(fetchAddThing(thing)),   
-        fetchAddAction: (file) => dispatch(fetchAdd(file))
+        fetchAddAction: (file) => dispatch(fetchAdd(file)),
+        toggleLightboxAction: (idx) => dispatch(toggleLightbox(idx))
     }
 }
 
