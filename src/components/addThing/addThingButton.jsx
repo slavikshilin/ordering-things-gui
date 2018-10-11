@@ -1,14 +1,20 @@
 import React from 'react';
-import { Icon } from 'antd';
-//import AddThingContent from './addThingContent'
-import Slider from '../slider/slider'
-//const confirm = Modal.confirm;
+import { Icon, Modal, Tooltip } from 'antd';
+import AddThingContent from './addThingContent'
+//import Slider from '../slider/slider'
+const confirm = Modal.confirm;
 
 const AddThingButton = (props) => {
 
-    const { gallery, toggleLightboxAction } = props;
-
     /*
+        const { gallery, toggleLightboxAction } = props;
+        <Slider gallery={gallery} toggleLightboxAction={toggleLightboxAction} />
+        const showSlider = () => {
+            toggleLightboxAction(0);
+        }
+    */
+
+    
     const showConfirm = () => {
         confirm({
             title: 'Добавление новой вещи',
@@ -16,7 +22,7 @@ const AddThingButton = (props) => {
             okText: 'OK',
             cancelText: 'Отмена',
             centered: true,
-            width: 950,
+            width: 560,
             onOk() {
                 console.log('OK');
             },
@@ -25,19 +31,15 @@ const AddThingButton = (props) => {
             },
         });
     }
-    */
-
-    const showSlider = () => {
-        toggleLightboxAction(0);
-    }
-
+    
     return (
-        <div className="btn-add-thing" onClick={() => showSlider()}>
-            <div className="btn-add-thing-content">
-                <Icon type="plus" />
+        <Tooltip placement="topRight" title="Добавить новую вещь">
+            <div className="btn-add-thing" onClick={() => showConfirm()}>
+                <div className="btn-add-thing-content">
+                    <Icon type="plus" />
+                </div>
             </div>
-            <Slider gallery={gallery} toggleLightboxAction={toggleLightboxAction} />
-        </div>
+        </Tooltip>
     )
 }
 

@@ -40,11 +40,11 @@ class Home extends Component {
                     <AuthHeader userInfo={getUserInfo(auth)} history={history} fetchLogoutAction={fetchLogoutAction} />
                     <div align="left">
                         <Tabs defaultActiveKey="1" onChange={callback}>
-                            <TabPane tab="Одежда" key="1">
-                                <TabContainer thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction} tabName="Одежда" />
-                            </TabPane>
-                            <TabPane tab="Обувь" key="2">
+                            <TabPane tab="Обувь" key="1">
                                 <TabContainer thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction}  tabName="Обувь" />
+                            </TabPane>
+                            <TabPane tab="Одежда" key="2">
+                                <TabContainer thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction} tabName="Одежда" />
                             </TabPane>
                             <TabPane tab="Сумки и рюкзаки" key="3">
                                 <TabContainer thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction}  tabName="Сумки и рюкзаки" />                        
