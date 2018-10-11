@@ -176,28 +176,9 @@
   padding: 8px;
 }
 
-/* you can make up upload button and sample style by using stylesheets */
-.anticon {
-  font-size: 18px;
-  color: white;
-  margin-left: auto;
-  margin-right: 0;     
-}
-
-.btn-add-file > .ant-upload.ant-upload-select-picture-card {
-  width: 80px;
-  height: 60px;  
-  margin-left: auto;
-  margin-right: 0;
-  background-color: #1890ff;
-}
 
 .btn-add-file-text .ant-upload-text {
   color: white;
-}
-
-.ant-confirm-body .anticon {
-  display: none;
 }
 
 .ant-confirm-body .ant-confirm-content {
@@ -211,11 +192,6 @@
 
 .ant-confirm-btns .ant-btn {
   margin-left: 8px;
-}
-
-image-gallery-contentfullscreen {
-  width: 1280px;
-  height: 960px;
 }
 
 .ant-tooltip-inner {
@@ -237,5 +213,30 @@ image-gallery-contentfullscreen {
 
 .ant-modal-content {
   background-color: #e8e8e8;
+}
+
+.ant-confirm-body .anticon {
+  display: none;
+}
+
+.ant-select-arrow > .anticon {
+  display: block;
+  color: #bfbfbf; 
+}
+
+/* you can make up upload button and sample style by using stylesheets */
+.anticon {
+  font-size: 18px;
+  color: white;
+  margin-left: auto;
+  margin-right: 0;     
+}
+
+.btn-add-file > .ant-upload.ant-upload-select-picture-card {
+  width: 80px;
+  height: 60px;  
+  margin-left: auto;
+  margin-right: 0;
+  background-color: #1890ff;
 }
 
