@@ -1,4 +1,4 @@
-import { addFile, removeFile, getData, getDownloadUrl, addThing } from '../core/api/apiMethods'
+import { addFile, removeFile, getData, addThing } from '../core/api/apiMethods'
 
 export const REQUEST_THING = 'REQUEST_THING'
 export const REQUEST_THING_SUCCESS = 'REQUEST_THING_SUCCESS'

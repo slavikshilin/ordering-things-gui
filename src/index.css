@@ -225,7 +225,7 @@
 }
 
 /* you can make up upload button and sample style by using stylesheets */
-.anticon {
+.anticon.anticon-plus {
   font-size: 18px;
   color: white;
   margin-left: auto;

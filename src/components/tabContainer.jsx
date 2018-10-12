@@ -49,19 +49,22 @@ class TabContainer extends Component {
         }
     }
 
+    description = (item) => {
+        return (
+            <div>
+                <p className="p-card">Размер: {item.size}</p>
+                <p className="p-card">Цвет: {item.color}</p>
+                <p className="p-card">Сезон: {item.season}</p>
+            </div>
+        )
+    }   
+
     render() {  
 
         const thingsInfo = (this.props.thingsInfo) ? this.props.thingsInfo : [];
 
         const { thingType, fetchAddThingAction, gallery, toggleLightboxAction } = this.props; 
-
-        const description = (
-            <div>
-                <p className="p-card">Размер:</p>
-                <p className="p-card">Цвет:</p>
-                <p className="p-card">Сезон:</p>
-            </div>
-        )        
+    
 
         const uploadButton = (
             <div>
@@ -93,12 +96,18 @@ class TabContainer extends Component {
                     renderItem={item => (
                         <List.Item>
                             <Card
+                                actions={
+                                    [
+                                        <Icon type="file-add"  />, 
+                                        <Icon type="edit" />, 
+                                        <Icon type="delete" />
+                                    ]}
                                 hoverable
                                 style={{ width: 180 }}
                                 cover={<img alt="example" src={item.urls[0]} />}>
                                 <Meta
                                     title={item.title}
-                                    description={description} />
+                                    description={this.description(item)} />
                             </Card>
                         </List.Item>
                     )}
