@@ -1,8 +1,9 @@
-import { addFile, removeFile, getData, addThing } from '../core/api/apiMethods'
+import { addFile, removeFile, getDownloadUrl, getData, addThing, editThing, AddThingImage } from '../core/api/apiMethods';
+import guid from '../core/utils/guid'
 
-export const REQUEST_THING = 'REQUEST_THING'
-export const REQUEST_THING_SUCCESS = 'REQUEST_THING_SUCCESS'
-export const REQUEST_THING_FAILED = 'REQUEST_THING_FAILED'
+export const REQUEST_THING = 'REQUEST_THING';
+export const REQUEST_THING_SUCCESS = 'REQUEST_THING_SUCCESS';
+export const REQUEST_THING_FAILED = 'REQUEST_THING_FAILED';
 
 function requestThing() {
     return {
@@ -62,21 +63,80 @@ export function fetchEdit(thing) {
     return (dispatch) => {
 
         dispatch(requestThing())
-
-        const fileName = 'maket'
-        const file = '123'
-        addFile(file, fileName)
+        editThing(thing)
             .then(() => {
-                dispatch(requestThingSuccess());
+                // получаем все данные с сервера
+                getData()
+                    .then((snapshot) => {
+                        dispatch(requestThingSuccess(snapshot.val())); 
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        throw err;
+                    })
             }
             )
             .catch(
                 err => {
-                    dispatch(requestThingError(err))
+                    dispatch(requestThingError(new Error(err)))
                 }
             )
     }
 }
+
+export function fetchAddImage(thing, file) {
+    return (dispatch) => {
+
+        dispatch(requestThing())
+
+        const fileName = guid();
+        addFile(file, fileName)
+            .then((resp) => {
+                if (resp.state === 'success') {
+
+                    getDownloadUrl(resp.metadata.fullPath)
+                        .then(imageUrl => {
+                            
+                            const urlObj = { url: imageUrl };
+                            AddThingImage(thing, urlObj)
+                                .then(() => {
+                                    // получаем все данные с сервера
+                                    getData()
+                                        .then((snapshot) => {
+                                            dispatch(requestThingSuccess(snapshot.val())); 
+                                        })
+                                        .catch(err => {
+                                            console.log(err);
+                                            throw err;
+                                        })
+                                }
+                                )
+                                .catch(
+                                    err => {
+                                        throw err;
+                                    }
+                                )
+                        })
+                        .catch(
+                            err => {
+                                throw err;
+                            }
+                        )
+
+                } else {
+                    throw String('Не удалось передать файл!');
+                }
+            }
+            )
+            .catch(
+                err => {
+                    dispatch(requestThingError(new Error(err)))
+                }
+            )
+
+    }
+}
+
 
 export function fetchRemove(thing) {
     return (dispatch) => {

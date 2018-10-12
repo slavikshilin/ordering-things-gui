@@ -55,18 +55,18 @@ export function getDownloadUrl(path) {
 }
 
 /**
- * Получение списка объектов БД
+ * Получение списка вещей
  * @param {Object} filter Фильтр  
  * @returns {Promise<Object>}
  */
-export function getData(filter) {
+export function getData(filter=null) {
 	var database = firebase.database();
 	var databaseRef = database.ref('things');
 	return databaseRef.once("value");
 }
 
 /**
- * Получение списка объектов БД
+ * Добавление новой вещи в список
  * @param {Object} thing Объект каталога   
  * @returns {Promise<Object>}
  */
@@ -74,6 +74,32 @@ export function addThing(thing) {
 	var database = firebase.database();
 	var databaseRef = database.ref('things');
 	var newThingKey = databaseRef.push().key;
+	thing.key = newThingKey;
 	var newThingRef = database.ref('things/' + newThingKey)
 	return newThingRef.set(thing);
+}
+
+/**
+ * Добавление новой вещи в список
+ * @param {Object} thing Объект каталога   
+ * @returns {Promise<Object>}
+ */
+export function editThing(thing) {
+	var database = firebase.database();
+	var thingRef = database.ref('things/' + thing.key)
+	return thingRef.update(thing);
+}
+
+/**
+ * Добавление новой вещи в список
+ * @param {Object} thing Объект каталога   
+ * @returns {Promise<Object>}
+ */
+export function AddThingImage(thing, url) {
+	var database = firebase.database();
+	var databaseRef = database.ref('things/' + thing.key + '/urls/');
+	var newImageKey = databaseRef.push().key;
+	url.key = newImageKey;	
+	var newThingImageRef = database.ref('things/' + thing.key + '/urls/' + newImageKey);
+	return newThingImageRef.set(url);
 }

@@ -203,12 +203,24 @@
   border-top-color:  #fff;
 }
 
+.ant-tooltip-placement-bottom .ant-tooltip-arrow {
+  border-bottom-color:  #fff;
+}
+
 .ant-tooltip-placement-topLeft .ant-tooltip-arrow {
   border-top-color:  #fff;
 }
 
 .ant-tooltip-placement-topRight .ant-tooltip-arrow {
   border-top-color:  #fff;
+}
+
+.ant-tooltip-placement-bottomLeft .ant-tooltip-arrow {
+  border-bottom-color:  #fff;
+}
+
+.ant-tooltip-placement-bottomRight .ant-tooltip-arrow {
+  border-bottom-color:  #fff;
 }
 
 .ant-modal-content {

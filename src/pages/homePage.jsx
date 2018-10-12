@@ -3,7 +3,6 @@ import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import * as authActions from '../actions/authActions'; 
-import * as storageActions from '../actions/storageActions';
 import * as thingsActions from '../actions/thingsActions';  
 import * as galleryActions from '../actions/galleryActions';
 import Home from '../components/home';
@@ -19,7 +18,6 @@ class HomePage extends Component {
             gallery,
             history,
             authActions,
-            storageActions,
             thingsActions,
             galleryActions
         } = this.props
@@ -36,7 +34,6 @@ class HomePage extends Component {
                     gallery={gallery}
                     history={history}
                     authActions={authActions}
-                    storageActions={storageActions}
                     thingsActions={thingsActions}
                     galleryActions={galleryActions} />
             )
@@ -55,7 +52,6 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
     return {
         authActions: bindActionCreators(authActions, dispatch),
-        storageActions: bindActionCreators(storageActions, dispatch),
         thingsActions: bindActionCreators(thingsActions, dispatch),
         galleryActions: bindActionCreators(galleryActions, dispatch),
 	}; 

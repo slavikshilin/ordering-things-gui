@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Tabs, Spin } from 'antd';
-import AuthHeader from './authHeader'
-import TabContainer from './tabContainer'
-import { getUserInfo } from '../core/utils/userInfo'
-import { thingType } from '../types/index'
+import AuthHeader from './authHeader';
+import TabContainer from './tabContainer';
+import { getUserInfo } from '../core/utils/userInfo';
+import { thingType } from '../types/index';
 
 const TabPane = Tabs.TabPane;
 
@@ -26,7 +26,6 @@ class Home extends Component {
             gallery,
             history,
             authActions,
-            storageActions,
             thingsActions,
             galleryActions 
         } = this.props
@@ -46,8 +45,7 @@ class Home extends Component {
                                     thingType={thingType.BOOT} 
                                     thingsInfo={thingsInfo} 
                                     gallery={gallery} 
-                                    storageActions={storageActions}
-                                    thingsActions={thingsActions}
+                                     thingsActions={thingsActions}
                                     galleryActions={galleryActions} 
                                     tabName="Обувь" />
                             </TabPane>
@@ -56,7 +54,6 @@ class Home extends Component {
                                     thingType={thingType.CLOTHES} 
                                     thingsInfo={thingsInfo} 
                                     gallery={gallery} 
-                                    storageActions={storageActions}
                                     thingsActions={thingsActions}
                                     galleryActions={galleryActions} 
                                     tabName="Одежда" />
@@ -66,7 +63,6 @@ class Home extends Component {
                                     thingType={thingType.BAG} 
                                     thingsInfo={thingsInfo} 
                                     gallery={gallery} 
-                                    storageActions={storageActions}
                                     thingsActions={thingsActions}
                                     galleryActions={galleryActions} 
                                     tabName="Сумки и рюкзаки" />                        
@@ -76,7 +72,6 @@ class Home extends Component {
                                     thingType={thingType.ACCESSORIZE} 
                                     thingsInfo={thingsInfo} 
                                     gallery={gallery} 
-                                    storageActions={storageActions}
                                     thingsActions={thingsActions}
                                     galleryActions={galleryActions} 
                                     tabName="Аксессуары" />                        
