@@ -2,7 +2,7 @@ import { TOGGLE_LIGHTBOX } from '../actions/galleryActions'
 
 const initialState = {
     show: false,
-    selectedImage: 0
+    item: null
 }
 
 export function galleryReducer(state = initialState, action) {
@@ -10,7 +10,7 @@ export function galleryReducer(state = initialState, action) {
 
         case TOGGLE_LIGHTBOX:
             {
-                let newState = { ...state, show: !state.show, selectedImage: action.payload }
+                let newState = { ...state, show: !state.show, item: action.payload }
                 return newState
             }        
 

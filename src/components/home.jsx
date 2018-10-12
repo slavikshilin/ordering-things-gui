@@ -45,7 +45,7 @@ class Home extends Component {
                                     thingType={thingType.BOOT} 
                                     thingsInfo={thingsInfo} 
                                     gallery={gallery} 
-                                     thingsActions={thingsActions}
+                                    thingsActions={thingsActions}
                                     galleryActions={galleryActions} 
                                     tabName="Обувь" />
                             </TabPane>

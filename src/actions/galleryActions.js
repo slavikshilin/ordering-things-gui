@@ -1,8 +1,8 @@
 export const TOGGLE_LIGHTBOX = 'TOGGLE_LIGHTBOX';
 
-export function toggleLightbox(idx) {
+export function toggleLightbox(item) {
     return {
         type: TOGGLE_LIGHTBOX,
-        payload: idx
+        payload: item
     }
 }

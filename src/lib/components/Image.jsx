@@ -66,24 +66,27 @@ export default class ImageContent extends React.Component {
     let img = new Image();
     let _this = this;
     img.onload = function(){
-      let [width, height] = [this.width, this.height];
+
       let box = ReactDOM.findDOMNode(_this.refs.container);
-      let [boxWidth, boxHeight] = [box.offsetWidth, box.offsetHeight]
-      let ratio = Math.min(boxWidth / width, boxHeight / height);
-      if(isNaN(ratio))
-        ratio = 1;
-      _this.setState({
-        loader: false,
-        ratio: ratio,
-        rotate: 0,
-        positionX: (boxWidth - width * ratio) / 2,
-        positionY: (boxHeight - height * ratio) / 2,
-        width: this.width,
-        height: this.height,
-        boxWidth: boxWidth,
-        boxHeight: boxHeight,
-        moving: false
-      })
+      if (box) {
+        let [width, height] = [this.width, this.height];
+        let [boxWidth, boxHeight] = [box.offsetWidth, box.offsetHeight]
+        let ratio = Math.min(boxWidth / width, boxHeight / height);
+        if(isNaN(ratio))
+          ratio = 1;
+        _this.setState({
+          loader: false,
+          ratio: ratio,
+          rotate: 0,
+          positionX: (boxWidth - width * ratio) / 2,
+          positionY: (boxHeight - height * ratio) / 2,
+          width: this.width,
+          height: this.height,
+          boxWidth: boxWidth,
+          boxHeight: boxHeight,
+          moving: false
+        })
+      }
     };
     img.src = props.src;
   }

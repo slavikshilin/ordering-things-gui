@@ -9,13 +9,13 @@ export default class Lightbox extends React.Component {
     render() {
 
         let container;
-        if (this.props.gallery.show)
+        if (this.props.show)
             container = (
                 <BodyPortal>
                     <Container
                         {...this.props}
                         toggleLightbox={this.props.toggleLightboxAction}
-                        selectedImage={this.props.gallery.selectedImage}
+                        selectedImage={0}
                     />
                 </BodyPortal>
             )
