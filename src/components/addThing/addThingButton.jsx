@@ -24,7 +24,7 @@ const AddThingButton = (props) => {
             centered: true,
             width: 560,
             onOk() {
-                props.fetchAddThingAction(props.thingType)
+                props.actions.fetchAddThing(props.thingType)
                 console.log('OK');
             },
             onCancel() {

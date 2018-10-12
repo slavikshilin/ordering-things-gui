@@ -3,13 +3,13 @@ import PropTypes from "prop-types"
 import UserPopover from './userPopover'
 
 const AuthHeader = props => {
-    const { userInfo, history, fetchLogoutAction } = props
+    const { userInfo, history, authActions } = props
 
     return (
         <div className="auth-header">
             <UserPopover userInfo={userInfo} />
             &nbsp;&nbsp;
-            <span className="auth-link" type="primary" onClick={() => fetchLogoutAction(history)}>Выйти</span>
+            <span className="auth-link" type="primary" onClick={() => authActions.fetchLogout(history)}>Выйти</span>
         </div>
     )
 

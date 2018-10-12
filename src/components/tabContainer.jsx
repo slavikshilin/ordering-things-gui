@@ -26,10 +26,10 @@ class TabContainer extends Component {
             message.error('Файл должен быть меньше 10MB!');
         }
 
-        const { fetchAddAction } = this.props;
+        const { actions } = this.props;
         const result = isJPG && isLt2M;
         if (result) {
-            fetchAddAction(file);
+            actions.fetchAdd(file);
         }
 
         return result;
@@ -63,7 +63,7 @@ class TabContainer extends Component {
 
         const thingsInfo = (this.props.thingsInfo) ? this.props.thingsInfo : [];
 
-        const { thingType, fetchAddThingAction, gallery, toggleLightboxAction } = this.props; 
+        const { thingType, gallery, actions } = this.props; 
     
 
         const uploadButton = (
@@ -77,7 +77,7 @@ class TabContainer extends Component {
     
         return (
             <div>
-                <AddThingButton thingType={thingType} thingsInfo={thingsInfo} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction}  />
+                <AddThingButton thingType={thingType} thingsInfo={thingsInfo} gallery={gallery} actions={actions} />
                 <Upload 
                     accept="image/*"
                     name="avatar"

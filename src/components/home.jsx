@@ -15,7 +15,7 @@ class Home extends Component {
 
     constructor(props) {
         super(props);
-        props.fetchDataAction(null);
+        props.thingsActions.fetchThings(null);
     }
 
 
@@ -25,10 +25,10 @@ class Home extends Component {
             things,
             gallery,
             history,
-            fetchLogoutAction,
-            fetchAddThingAction,
-            fetchAddAction,
-            toggleLightboxAction
+            authActions,
+            storageActions,
+            thingsActions,
+            galleryActions 
         } = this.props
 
         const { thingsInfo, isFetching } = things;
@@ -38,20 +38,48 @@ class Home extends Component {
         } else {
             return (
                 <div className="main-layout">
-                    <AuthHeader userInfo={getUserInfo(auth)} history={history} fetchLogoutAction={fetchLogoutAction} />
+                    <AuthHeader userInfo={getUserInfo(auth)} history={history} authActions={authActions} />
                     <div align="left">
                         <Tabs defaultActiveKey="1" onChange={callback}>
                             <TabPane tab="Обувь" key="1">
-                                <TabContainer thingType={thingType.BOOT} thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction}  tabName="Обувь" />
+                                <TabContainer 
+                                    thingType={thingType.BOOT} 
+                                    thingsInfo={thingsInfo} 
+                                    gallery={gallery} 
+                                    storageActions={storageActions}
+                                    thingsActions={thingsActions}
+                                    galleryActions={galleryActions} 
+                                    tabName="Обувь" />
                             </TabPane>
                             <TabPane tab="Одежда" key="2">
-                                <TabContainer thingType={thingType.CLOTHES} thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction} tabName="Одежда" />
+                                <TabContainer 
+                                    thingType={thingType.CLOTHES} 
+                                    thingsInfo={thingsInfo} 
+                                    gallery={gallery} 
+                                    storageActions={storageActions}
+                                    thingsActions={thingsActions}
+                                    galleryActions={galleryActions} 
+                                    tabName="Одежда" />
                             </TabPane>
                             <TabPane tab="Сумки и рюкзаки" key="3">
-                                <TabContainer thingType={thingType.BAG} thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction}  tabName="Сумки и рюкзаки" />                        
+                                <TabContainer 
+                                    thingType={thingType.BAG} 
+                                    thingsInfo={thingsInfo} 
+                                    gallery={gallery} 
+                                    storageActions={storageActions}
+                                    thingsActions={thingsActions}
+                                    galleryActions={galleryActions} 
+                                    tabName="Сумки и рюкзаки" />                        
                             </TabPane>                            
                             <TabPane tab="Аксессуары" key="4">
-                                <TabContainer thingType={thingType.ACCESSORIZE} thingsInfo={thingsInfo} fetchAddAction={fetchAddAction} fetchAddThingAction={fetchAddThingAction} gallery={gallery} toggleLightboxAction={toggleLightboxAction}  tabName="Аксессуары" />                        
+                                <TabContainer 
+                                    thingType={thingType.ACCESSORIZE} 
+                                    thingsInfo={thingsInfo} 
+                                    gallery={gallery} 
+                                    storageActions={storageActions}
+                                    thingsActions={thingsActions}
+                                    galleryActions={galleryActions} 
+                                    tabName="Аксессуары" />                        
                             </TabPane>
                         </Tabs>
                     </div>

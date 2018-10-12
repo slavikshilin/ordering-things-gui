@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from "redux";  
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchLogout } from '../actions/authActions'; 
-import { fetchAdd } from '../actions/storageActions';
-import { fetchThings, fetchAddThing } from '../actions/thingsActions';
-import { toggleLightbox } from '../actions/galleryActions';
+import * as authActions from '../actions/authActions'; 
+import * as storageActions from '../actions/storageActions';
+import * as thingsActions from '../actions/thingsActions';  
+import * as galleryActions from '../actions/galleryActions';
 import Home from '../components/home';
 import Splash from '../components/splash';
 
@@ -17,11 +18,10 @@ class HomePage extends Component {
             things,
             gallery,
             history,
-            fetchLogoutAction,
-            fetchAddAction,
-            fetchAddThingAction,
-            fetchDataAction,
-            toggleLightboxAction
+            authActions,
+            storageActions,
+            thingsActions,
+            galleryActions
         } = this.props
 
         if (auth.isFetching) {
@@ -35,11 +35,10 @@ class HomePage extends Component {
                     things={things}
                     gallery={gallery}
                     history={history}
-                    fetchLogoutAction={fetchLogoutAction}
-                    fetchDataAction={fetchDataAction}
-                    fetchAddThingAction={fetchAddThingAction}
-                    fetchAddAction={fetchAddAction}
-                    toggleLightboxAction={toggleLightboxAction} />
+                    authActions={authActions}
+                    storageActions={storageActions}
+                    thingsActions={thingsActions}
+                    galleryActions={galleryActions} />
             )
         }
     }
@@ -55,12 +54,11 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchLogoutAction: (history) => dispatch(fetchLogout(history)),
-        fetchDataAction: (things) => dispatch(fetchThings(things)),      
-        fetchAddThingAction: (thing) => dispatch(fetchAddThing(thing)),   
-        fetchAddAction: (file) => dispatch(fetchAdd(file)),
-        toggleLightboxAction: (idx) => dispatch(toggleLightbox(idx))
-    }
+        authActions: bindActionCreators(authActions, dispatch),
+        storageActions: bindActionCreators(storageActions, dispatch),
+        thingsActions: bindActionCreators(thingsActions, dispatch),
+        galleryActions: bindActionCreators(galleryActions, dispatch),
+	}; 
 }
 
 export default withRouter(connect(
