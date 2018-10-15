@@ -7,16 +7,16 @@ class AddThingContent extends Component {
     getThingParamsByType(params) {
         return (
             <div>
-                {Object.keys(params).map((element, i) =>	
-                    <div key={i}>
+                {Object.keys(params).map((element, i) =>
+                    <div key={i} className="thing-block">
                         <div>{params[element].Text}</div>
                         <div>
-                            <ThingParamControl paramType={params[element].ParamType} list={params[element].List} defaultValue={params[element].Default} />                           
-                        </div> 
-                    </div>                        
-            )}
+                            <ThingParamControl paramType={params[element].ParamType} list={params[element].List} defaultValue={params[element].Default} />
+                        </div>
+                    </div>
+                )}
             </div>
-        )   
+        )
     }
 
     getThingParams() {
