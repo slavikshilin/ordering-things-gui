@@ -13,7 +13,7 @@
 const bootParams = {
     
     /** Название */
-    caption: { Text: "Название", ParamType: paramControlType.INPUT, Default: '' }, 
+    title: { Text: "Название", ParamType: paramControlType.INPUT, Default: '' }, 
 
     /** Сезон */
     seasonType: { Text: "Сезон",  ParamType: paramControlType.SELECT, List: seasonType, Default: seasonType.SUMMER }, 

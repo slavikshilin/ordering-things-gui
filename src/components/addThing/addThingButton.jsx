@@ -1,37 +1,46 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Icon, Modal, Tooltip } from 'antd';
 import AddThingContent from './addThingContent'
 const confirm = Modal.confirm;
 
-const AddThingButton = (props) => {
+class AddThingButton extends Component {
+   
+    
+    showConfirm() {
+        const { thingType, thingAdd, thingAddActions } = this.props;
 
-    const showConfirm = (props) => {
         confirm({
             title: 'Добавление новой вещи',
-            content: <AddThingContent thingType={props.thingType} />,
+            content: <AddThingContent thingType={thingType} thingAddActions={thingAddActions} />,
             okText: 'OK',
             cancelText: 'Отмена',
             centered: true,
             width: 560,
             onOk() {
-                props.actions.fetchAddThing(props.thingType)
-                console.log('OK');
+                if (thingAdd) {
+                    //props.thingsActions.fetchAddThing(props.thingAdd);
+                    thingAddActions.thingAddOk();
+                    console.log('OK');
+                }
             },
             onCancel() {
+                thingAddActions.thingAddCancel();
                 console.log('Cancel');
             },
         });
     }
 
-    return (
-        <Tooltip placement="topRight" title="Добавить новую вещь">
-            <div className="btn-add-thing" onClick={() => showConfirm(props)}>
-                <div className="btn-add-thing-content">
-                    <Icon type="plus" />
+    render() {
+        return (
+            <Tooltip placement="topRight" title="Добавить новую вещь">
+                <div className="btn-add-thing" onClick={() => this.showConfirm()}>
+                    <div className="btn-add-thing-content">
+                        <Icon type="plus" />
+                    </div>
                 </div>
-            </div>
-        </Tooltip>
-    )
+            </Tooltip>
+        )
+    }
 }
 
 export default AddThingButton  

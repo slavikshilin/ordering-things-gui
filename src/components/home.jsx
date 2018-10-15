@@ -23,10 +23,12 @@ class Home extends Component {
         const {
             auth,
             things,
+            thingAdd,
             gallery,
             history,
             authActions,
             thingsActions,
+            thingAddActions,
             galleryActions 
         } = this.props
 
@@ -42,37 +44,45 @@ class Home extends Component {
                         <Tabs defaultActiveKey="1" onChange={callback}>
                             <TabPane tab="Обувь" key="1">
                                 <TabContainer 
+                                    thingAdd={thingAdd}
                                     thingType={thingType.BOOT} 
                                     thingsInfo={thingsInfo} 
                                     gallery={gallery} 
                                     thingsActions={thingsActions}
+                                    thingAddActions={thingAddActions}
                                     galleryActions={galleryActions} 
                                     tabName="Обувь" />
                             </TabPane>
                             <TabPane tab="Одежда" key="2">
                                 <TabContainer 
+                                    thingAdd={thingAdd}
                                     thingType={thingType.CLOTHES} 
                                     thingsInfo={thingsInfo} 
                                     gallery={gallery} 
                                     thingsActions={thingsActions}
+                                    thingAddActions={thingAddActions}
                                     galleryActions={galleryActions} 
                                     tabName="Одежда" />
                             </TabPane>
                             <TabPane tab="Сумки и рюкзаки" key="3">
                                 <TabContainer 
+                                    thingAdd={thingAdd}
                                     thingType={thingType.BAG} 
                                     thingsInfo={thingsInfo} 
                                     gallery={gallery} 
                                     thingsActions={thingsActions}
+                                    thingAddActions={thingAddActions}
                                     galleryActions={galleryActions} 
                                     tabName="Сумки и рюкзаки" />                        
                             </TabPane>                            
                             <TabPane tab="Аксессуары" key="4">
                                 <TabContainer 
+                                    thingAdd={thingAdd}
                                     thingType={thingType.ACCESSORIZE} 
                                     thingsInfo={thingsInfo} 
                                     gallery={gallery} 
                                     thingsActions={thingsActions}
+                                    thingAddActions={thingAddActions}
                                     galleryActions={galleryActions} 
                                     tabName="Аксессуары" />                        
                             </TabPane>

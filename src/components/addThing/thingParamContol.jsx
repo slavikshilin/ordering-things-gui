@@ -7,7 +7,7 @@ const Option = Select.Option;
 const { TextArea } = Input;
 
 const ThingParamControl = props => {
-    const { paramType, list, defaultValue } = props;
+    const { paramName, paramType, list, defaultValue, thingAddActions } = props;
 
     if (paramType === paramControlType.SELECT) {
         return (
@@ -18,9 +18,16 @@ const ThingParamControl = props => {
             </Select>
         )
     } else if (paramType === paramControlType.INPUT) {
-        return <Input maxLength="50" style={{ width: 500 }} />
+        return <Input 
+                    maxLength="50" 
+                    style={{ width: 500 }} 
+                    onChange={(e) => thingAddActions.thingAddChange({ paramName: paramName, paramValue: e.target.value })} />
     } else if (paramType === paramControlType.TEXT_AREA) {
-        return <TextArea maxLength="250" autosize={{ minRows: 2, maxRows: 5 }} style={{ width: 500 }} />
+        return <TextArea 
+                    maxLength="250" 
+                    autosize={{ minRows: 2, maxRows: 5 }} 
+                    style={{ width: 500 }}
+                    onChange={(e) => thingAddActions.thingAddChange({ paramName: paramName, paramValue: e.target.value })}  />
     } else {
         return null
     }
