@@ -28,7 +28,7 @@ class AddThingContent extends Component {
     }
 
     getThingParams() {
-        const thingType = this.props.thingType;
+        let thingType = this.props.thingType;  
 
         if (thingType === 'boot') {
             return this.getThingParamsByType(bootParams);

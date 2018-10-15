@@ -11,7 +11,10 @@ const ThingParamControl = props => {
 
     if (paramType === paramControlType.SELECT) {
         return (
-            <Select defaultValue={defaultValue} style={{ width: 500 }} >
+            <Select defaultValue={defaultValue} 
+                style={{ width: 500 }} 
+                onChange={value => thingAddActions.thingAddChange({ paramName: paramName, paramValue: value })} >
+                
                 {Object.values(list).map((paramItem, i) =>
                     <Option value={paramItem} key={i} >{paramItem}</Option>
                 )}

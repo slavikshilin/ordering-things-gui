@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import { Icon, Modal, Tooltip } from 'antd';
 import AddThingContent from './addThingContent'
+import bootParams from '../../types/boot/bootParams';
 const confirm = Modal.confirm;
 
 class AddThingButton extends Component {
    
+    constructor(props) {
+        super(props);
+        this.state = { thingAdd: null };
+    }
     
     showConfirm() {
-        const { thingType, thingAdd, thingAddActions } = this.props;
+        const { thingType, thingAddActions } = this.props;
+        const thisLocal = this;
 
         confirm({
             title: 'Добавление новой вещи',
@@ -17,8 +23,10 @@ class AddThingButton extends Component {
             centered: true,
             width: 560,
             onOk() {
+                const { thingAdd, thingsActions } = thisLocal.props; 
+
                 if (thingAdd) {
-                    //props.thingsActions.fetchAddThing(props.thingAdd);
+                    thingsActions.fetchAddThing(thingAdd.thingAdd);
                     thingAddActions.thingAddOk();
                     console.log('OK');
                 }
@@ -31,6 +39,7 @@ class AddThingButton extends Component {
     }
 
     render() {
+
         return (
             <Tooltip placement="topRight" title="Добавить новую вещь">
                 <div className="btn-add-thing" onClick={() => this.showConfirm()}>

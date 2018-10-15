@@ -1,21 +1,27 @@
-import { THING_ADD_OK, THING_ADD_CANCEL, THING_ADD_CHANGE } from '../actions/thingAddActions'
+import { THING_ADD_DEFAULT, THING_ADD_OK, THING_ADD_CANCEL, THING_ADD_CHANGE } from '../actions/thingAddActions'
 
 const initialState = {
-    thingAdd: {}    
+    thingAdd: { urls: {} }    
 };
 
 export function thingAddReducer(state = initialState, action) {
     switch (action.type) {
 
+        case THING_ADD_DEFAULT:
+            {
+                let newState = { ...state, thingAdd: action.payload }
+                return newState
+            }
+
         case THING_ADD_OK:
             {
-                let newState = { ...state, thingAdd: {} }
+                let newState = { ...initialState };
                 return newState
             }
 
         case THING_ADD_CANCEL:
             {
-                let newState = { ...state, thingAdd: {} }
+                let newState = { ...initialState };
                 return newState
             }
 
