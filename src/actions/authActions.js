@@ -78,12 +78,11 @@ export function fetchLogin(login, password, history) {
             .then((userInfo) => {
                 console.log(JSON.stringify(userInfo))
 
-
                 /*
                 var user = firebase.auth().currentUser;
                 user.updateProfile({
-                    displayName: "Вячеслав Шилин",
-                    photoURL: "https://firebasestorage.googleapis.com/v0/b/ordering-things-api.appspot.com/o/users%2Fvshilin.jpg?alt=media&token=9fd5afc8-1d61-42dc-9543-f07475f38a8c"
+                    displayName: "Вера Шилина",
+                    photoURL: "https://firebasestorage.googleapis.com/v0/b/ordering-things-api.appspot.com/o/users%2Fvera.jpg?alt=media&token=471839d5-48b6-4725-8cd7-cb11d5bad0aa"
                 }).then(function () {
                     console.log('update user success!');
                 }).catch(function (error) {

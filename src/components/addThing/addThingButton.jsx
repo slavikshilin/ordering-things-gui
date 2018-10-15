@@ -1,24 +1,14 @@
 import React from 'react';
 import { Icon, Modal, Tooltip } from 'antd';
 import AddThingContent from './addThingContent'
-//import Slider from '../slider/slider'
 const confirm = Modal.confirm;
 
 const AddThingButton = (props) => {
 
-    /*
-        const { gallery, toggleLightboxAction } = props;
-        <Slider gallery={gallery} toggleLightboxAction={toggleLightboxAction} />
-        const showSlider = () => {
-            toggleLightboxAction(0);
-        }
-    */
-
-    
     const showConfirm = (props) => {
         confirm({
             title: 'Добавление новой вещи',
-            content: <AddThingContent />,
+            content: <AddThingContent thingType={props.thingType} />,
             okText: 'OK',
             cancelText: 'Отмена',
             centered: true,
@@ -32,7 +22,7 @@ const AddThingButton = (props) => {
             },
         });
     }
-    
+
     return (
         <Tooltip placement="topRight" title="Добавить новую вещь">
             <div className="btn-add-thing" onClick={() => showConfirm(props)}>

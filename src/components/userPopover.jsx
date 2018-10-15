@@ -20,7 +20,7 @@ const UserPopover = props => {
     return (
         <Popover placement="bottomRight" content={content} title="Данные пользователя">
             <span className="auth-link auth-link-logged">
-                <Avatar id="avatar" src={userInfo.photoURL} />
+                <Avatar size={64} id="avatar" src={userInfo.photoURL} />
             </span>
         </Popover>
     )
