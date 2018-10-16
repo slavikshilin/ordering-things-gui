@@ -37,7 +37,7 @@ class CardItem extends Component {
   
 
     render() {
-        const { item, gallery, galleryActions } = this.props;
+        const { item, gallery, galleryActions, thingsActions } = this.props;
         const show = (item === gallery.item) && (item.urls);
 
         const defaultUrl = (item.urls) ? Object.values(item.urls)[0].url : 'https://firebasestorage.googleapis.com/v0/b/ordering-things-api.appspot.com/o/default%2Fempty.jpg?alt=media&token=427e09b3-98ac-4967-b058-74c99a039f86' ;
@@ -75,7 +75,7 @@ class CardItem extends Component {
                                 </Tooltip>,
 
                                 <Tooltip placement="bottomLeft" title="Удалить">
-                                    <Icon type="delete" /> 
+                                    <Icon type="delete" onClick={() => {thingsActions.fetchRemove(item)}} /> 
                                 </Tooltip>                            
                             ]}
                         hoverable

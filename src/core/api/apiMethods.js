@@ -92,6 +92,17 @@ export function editThing(thing) {
 }
 
 /**
+ * Удаление вещи из списка
+ * @param {Object} thing Объект каталога   
+ * @returns {Promise<Object>}
+ */
+export function removeThing(thing) {
+	var database = firebase.database();
+	var thingRef = database.ref('things/' + thing.key)
+	return thingRef.remove();
+}
+
+/**
  * Добавление новой вещи в список
  * @param {Object} thing Объект каталога   
  * @returns {Promise<Object>}

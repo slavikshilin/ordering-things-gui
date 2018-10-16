@@ -1,4 +1,4 @@
-import { addFile, removeFile, getDownloadUrl, getData, addThing, editThing, AddThingImage } from '../core/api/apiMethods';
+import { addFile, removeThing, getDownloadUrl, getData, addThing, editThing, AddThingImage } from '../core/api/apiMethods';
 import guid from '../core/utils/guid'
 
 export const REQUEST_THING = 'REQUEST_THING';
@@ -154,10 +154,17 @@ export function fetchRemove(thing) {
 
         dispatch(requestThing())
 
-        const fileName = 'maket'
-        removeFile(fileName)
+        removeThing(thing)
             .then(() => {
-                dispatch(requestThingSuccess());
+                // получаем все данные с сервера
+                getData(thing.type)
+                    .then((snapshot) => {
+                        dispatch(requestThingSuccess(snapshot.val(), thing.type)); 
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        throw err;
+                    })
             }
             )
             .catch(
