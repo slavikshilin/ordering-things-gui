@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { List, Card, Upload, Icon, message, Tooltip, Modal } from 'antd';
+import ThingInfoPopover from './thingInfoPopover';
 import Lightbox from '../lib/index';
 
 const { Meta } = Card;
@@ -46,11 +47,11 @@ class CardItem extends Component {
             okType: 'danger',
             cancelText: 'Нет',
             onOk() {
-                console.log('OK');
+                console.log('OK remove');
                 thingsActions.fetchRemove(item);
             },
             onCancel() {
-                console.log('Cancel');
+                console.log('Cancel remove');
             },
         });
     }
@@ -87,6 +88,8 @@ class CardItem extends Component {
                                         <Icon type="file-add" />
                                     </Tooltip>
                                 </Upload>,
+
+                                <ThingInfoPopover thingInfo={item} />,
 
                                 <Tooltip placement="bottomLeft" title="Изменить">
                                     <Icon type="edit" />

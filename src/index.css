@@ -196,7 +196,7 @@
 
 .ant-tooltip-inner {
   background-color: #fff;
-  color: #595959;
+  color: black;
 }
 
 .ant-tooltip-placement-top .ant-tooltip-arrow {
@@ -288,5 +288,13 @@
   align-content: center; 
   justify-content: center; 
   overflow: auto;    
+}
+
+p {
+  margin: 0;
+}
+
+.ant-popover-inner-content {
+  color: black;
 }
 
