@@ -78,6 +78,7 @@ class CardItem extends Component {
                         actions={
                             [
                                 <Upload
+                                    multiple
                                     accept="image/*"
                                     name="fileAdd"
                                     showUploadList={false}
