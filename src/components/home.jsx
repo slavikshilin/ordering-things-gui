@@ -5,6 +5,7 @@ import AuthHeader from './authHeader';
 import TabContainer from './tabContainer';
 import { getUserInfo } from '../core/utils/userInfo';
 import bootParams from '../types/boot/bootParams';
+import clothesParams from '../types/clothes/clothesParams';
 import thingTypes from '../types/thingType';
 
 const TabPane = Tabs.TabPane;
@@ -58,7 +59,7 @@ class Home extends Component {
                             <TabPane tab="Одежда" key={thingTypes.CLOTHES}>
                                 <TabContainer 
                                     thingAdd={thingAdd}
-                                    params={bootParams}
+                                    params={clothesParams}
                                     thingsInfo={thingsInfo} 
                                     gallery={gallery} 
                                     thingsActions={thingsActions}
