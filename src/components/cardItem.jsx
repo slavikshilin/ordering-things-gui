@@ -4,6 +4,10 @@ import Lightbox from '../lib/index';
 
 const { Meta } = Card;
 
+const showMessage = () => {
+    message.success('Файл успешно добавлен!');
+}
+
 class CardItem extends Component {
 
     beforeUpload(file) {
@@ -20,8 +24,7 @@ class CardItem extends Component {
         const result = isJPG && isLt2M;
 
         if (result) {
-            thingsActions.fetchAddImage(item, file);
-            message.success('Файл успешно добавлен!');
+            thingsActions.fetchAddImage(item, file, showMessage);
         }
 
         return false;
@@ -37,7 +40,7 @@ class CardItem extends Component {
         const { item, gallery, galleryActions } = this.props;
         const show = (item === gallery.item) && (item.urls);
 
-        const defaultUrl = (item.urls) ? Object.values(item.urls)[0].url : 'https://firebasestorage.googleapis.com/v0/b/ordering-things-api.appspot.com/o/maket%2Fmaket.jpg?alt=media&token=1a157331-ead3-400a-a145-31fb2f30be5c' ;
+        const defaultUrl = (item.urls) ? Object.values(item.urls)[0].url : 'https://firebasestorage.googleapis.com/v0/b/ordering-things-api.appspot.com/o/default%2Fempty.jpg?alt=media&token=427e09b3-98ac-4967-b058-74c99a039f86' ;
 
         const imageUrls = (item.urls) ? Object.values(item.urls)
             .map((urlObj, i) =>	                 

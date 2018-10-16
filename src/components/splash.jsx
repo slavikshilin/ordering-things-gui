@@ -1,18 +1,11 @@
 import React from 'react'
-import { Spin, Layout } from 'antd'
-
-const { Content, Footer } = Layout
+import { Spin } from 'antd'
 
 const Splash = () => {
     return (
-        <Layout align="middle">
-            <Footer style={{ fontSize: "x-large" }}>
-            </Footer>
-            <Content>
-                <Spin tip="Загрузка..." size="large" />
-            </Content>
-            <Footer></Footer>
-        </Layout>
+        <div className="splash-parent">
+            <Spin tip="Загрузка..." size="large" />
+        </div>
     )
 }
 

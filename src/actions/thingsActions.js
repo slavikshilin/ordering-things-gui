@@ -84,7 +84,7 @@ export function fetchEdit(thing) {
     }
 }
 
-export function fetchAddImage(thing, file) {
+export function fetchAddImage(item, file, showMessage) {
     return (dispatch) => {
 
         dispatch(requestThing())
@@ -98,8 +98,9 @@ export function fetchAddImage(thing, file) {
                         .then(imageUrl => {
                             
                             const urlObj = { url: imageUrl };
-                            AddThingImage(thing, urlObj)
+                            AddThingImage(item, urlObj)
                                 .then(() => {
+                                    showMessage();
                                     // получаем все данные с сервера
                                     getData()
                                         .then((snapshot) => {

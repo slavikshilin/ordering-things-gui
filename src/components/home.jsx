@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Tabs, Spin } from 'antd';
+import { Tabs } from 'antd';
+import Splash from './splash';
 import AuthHeader from './authHeader';
 import TabContainer from './tabContainer';
 import { getUserInfo } from '../core/utils/userInfo';
@@ -18,7 +19,6 @@ class Home extends Component {
         props.thingsActions.fetchThings(null);
     }
 
-
     render() {
         const {
             auth,
@@ -35,7 +35,7 @@ class Home extends Component {
         const { thingsInfo, isFetching } = things;
 
         if (isFetching) {
-          return (<Spin tip="Загрузка..." size="large" />)  
+          return (<Splash />)  
         } else {
             return (
                 <div className="main-layout">

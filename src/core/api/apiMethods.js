@@ -62,6 +62,7 @@ export function getDownloadUrl(path) {
 export function getData(filter=null) {
 	var database = firebase.database();
 	var databaseRef = database.ref('things');
+	//var databaseFilteredRef = databaseRef.child('type').equalTo('boot');
 	return databaseRef.once("value");
 }
 

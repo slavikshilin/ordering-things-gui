@@ -1,4 +1,8 @@
-import { REQUEST_THING, REQUEST_THING_SUCCESS, REQUEST_THING_FAILED } from '../actions/thingsActions'
+import { 
+    REQUEST_THING, 
+    REQUEST_THING_SUCCESS, 
+    REQUEST_THING_FAILED
+} from '../actions/thingsActions'
 
 const initialState = {
     thingsInfo: null,
@@ -25,7 +29,7 @@ export function thingsReducer(state = initialState, action) {
             {
                 let newState = { ...state, thingsInfo: null, err: action.payload, isFetching: false }
                 return newState
-            }       
+            }             
 
         default:
             return state
