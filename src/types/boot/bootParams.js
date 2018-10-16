@@ -1,10 +1,11 @@
- import bootType from './bootType';
- import bootSizeType from './bootSizeType';
- import bootPlatformSizeType from './bootPlatformSizeType';
- import bootHeelsSizeType from './bootHeelsSizeType';
- import paramControlType from '../paramControlType';
- import seasonType from '../seasonType';
- import colorType from '../colorType';
+import thingType from '../thingType';
+import bootType from './bootType';
+import bootSizeType from './bootSizeType';
+import bootPlatformSizeType from './bootPlatformSizeType';
+import bootHeelsSizeType from './bootHeelsSizeType';
+import paramControlType from '../paramControlType';
+import seasonType from '../seasonType';
+import colorType from '../colorType';
  
  /**
  * Параметры обуви
@@ -12,6 +13,9 @@
  */
 const bootParams = {
     
+    /** Тип */
+    type: { Text: "Тип", ParamType: paramControlType.NONE, Default: thingType.BOOT },
+
     /** Название */
     title: { Text: "Название", ParamType: paramControlType.INPUT, Default: '' }, 
 

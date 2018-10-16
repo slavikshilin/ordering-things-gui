@@ -1,6 +1,6 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { Select, Input } from 'antd'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Select, Input } from 'antd';
 import paramControlType from '../../types/paramControlType';
 
 const Option = Select.Option;

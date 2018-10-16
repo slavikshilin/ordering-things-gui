@@ -12,6 +12,10 @@ const paramControlType = {
 	
 	/** text area */
     TEXT_AREA: "text_area",
+
+	/** none */
+    NONE: "none",    
+
 };
 
 export default paramControlType;   

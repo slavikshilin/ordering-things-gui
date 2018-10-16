@@ -13,11 +13,17 @@ class TabContainer extends Component {
     render() {  
 
         const thingsInfo = (this.props.thingsInfo) ? this.props.thingsInfo : [];
-        const { thingAdd, thingType, gallery, thingsActions, thingAddActions, galleryActions } = this.props; 
+        const { thingAdd, params, gallery, thingsActions, thingAddActions, galleryActions } = this.props; 
 
         return (
             <div>
-                <AddThingButton thingAdd={thingAdd} thingType={thingType} thingsInfo={thingsInfo} gallery={gallery} thingsActions={thingsActions} thingAddActions={thingAddActions} />
+                <AddThingButton 
+                    thingAdd={thingAdd} 
+                    params={params} 
+                    thingsInfo={thingsInfo} 
+                    gallery={gallery} 
+                    thingsActions={thingsActions} 
+                    thingAddActions={thingAddActions} />
                 <List
                     grid={{ gutter: 16, xs: 1, sm: 2, md: 5, lg: 5, xl: 5, xxl: 5 }}
                     dataSource={Object.values(thingsInfo)}

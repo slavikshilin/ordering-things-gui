@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Icon, Modal, Tooltip } from 'antd';
 import AddThingContent from './addThingContent'
-import bootParams from '../../types/boot/bootParams';
 const confirm = Modal.confirm;
 
 class AddThingButton extends Component {
@@ -11,13 +10,24 @@ class AddThingButton extends Component {
         this.state = { thingAdd: null };
     }
     
+    getDefaultThing(params) {
+        let defaultThing = {};
+        for (var key in params) {
+            defaultThing[key] = params[key].Default;
+        }
+        return defaultThing;
+    }
+
     showConfirm() {
-        const { thingType, thingAddActions } = this.props;
+        const { params, thingAddActions } = this.props;
         const thisLocal = this;
+
+        const defaultThing = this.getDefaultThing(params);
+        thingAddActions.thingAddDefault(defaultThing);
 
         confirm({
             title: 'Добавление новой вещи',
-            content: <AddThingContent thingType={thingType} thingAddActions={thingAddActions} />,
+            content: <AddThingContent thingAddActions={thingAddActions} params={params} />,
             okText: 'OK',
             cancelText: 'Отмена',
             centered: true,
@@ -26,6 +36,9 @@ class AddThingButton extends Component {
                 const { thingAdd, thingsActions } = thisLocal.props; 
 
                 if (thingAdd) {
+                    // Set current datetime
+                    thingAdd.thingAdd.createDate = Date.now();
+
                     thingsActions.fetchAddThing(thingAdd.thingAdd);
                     thingAddActions.thingAddOk();
                     console.log('OK');

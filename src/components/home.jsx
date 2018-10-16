@@ -3,7 +3,7 @@ import { Tabs, Spin } from 'antd';
 import AuthHeader from './authHeader';
 import TabContainer from './tabContainer';
 import { getUserInfo } from '../core/utils/userInfo';
-import { thingType } from '../types/index';
+import bootParams from '../types/boot/bootParams';
 
 const TabPane = Tabs.TabPane;
 
@@ -45,7 +45,7 @@ class Home extends Component {
                             <TabPane tab="Обувь" key="1">
                                 <TabContainer 
                                     thingAdd={thingAdd}
-                                    thingType={thingType.BOOT} 
+                                    params={bootParams}
                                     thingsInfo={thingsInfo} 
                                     gallery={gallery} 
                                     thingsActions={thingsActions}
@@ -56,7 +56,7 @@ class Home extends Component {
                             <TabPane tab="Одежда" key="2">
                                 <TabContainer 
                                     thingAdd={thingAdd}
-                                    thingType={thingType.CLOTHES} 
+                                    params={bootParams}
                                     thingsInfo={thingsInfo} 
                                     gallery={gallery} 
                                     thingsActions={thingsActions}
@@ -67,7 +67,7 @@ class Home extends Component {
                             <TabPane tab="Сумки и рюкзаки" key="3">
                                 <TabContainer 
                                     thingAdd={thingAdd}
-                                    thingType={thingType.BAG} 
+                                    params={bootParams}
                                     thingsInfo={thingsInfo} 
                                     gallery={gallery} 
                                     thingsActions={thingsActions}
@@ -78,7 +78,7 @@ class Home extends Component {
                             <TabPane tab="Аксессуары" key="4">
                                 <TabContainer 
                                     thingAdd={thingAdd}
-                                    thingType={thingType.ACCESSORIZE} 
+                                    params={bootParams}
                                     thingsInfo={thingsInfo} 
                                     gallery={gallery} 
                                     thingsActions={thingsActions}

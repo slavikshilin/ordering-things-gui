@@ -35,18 +35,19 @@ class CardItem extends Component {
 
     render() {
         const { item, gallery, galleryActions } = this.props;
-        const show = (item === gallery.item)
+        const show = (item === gallery.item) && (item.urls);
 
-        const urlObjList = Object.values(item.urls);
-        const imageUrls = urlObjList
+        const defaultUrl = (item.urls) ? Object.values(item.urls)[0].url : 'https://firebasestorage.googleapis.com/v0/b/ordering-things-api.appspot.com/o/maket%2Fmaket.jpg?alt=media&token=1a157331-ead3-400a-a145-31fb2f30be5c' ;
+
+        const imageUrls = (item.urls) ? Object.values(item.urls)
             .map((urlObj, i) =>	                 
             {
                 return {
                     src: urlObj.url,
                     title: item.title,
-                    description: `Фото ${i + 1}/${urlObjList.length}`                               
+                    description: `Фото ${i + 1}/${Object.values(item.urls).length}`                               
                 };
-            });
+            }) : null;
 
         return (
             <div>    
@@ -76,7 +77,7 @@ class CardItem extends Component {
                             ]}
                         hoverable
                         style={{ width: 180 }}
-                        cover={<img alt="example" src={Object.values(item.urls)[0].url} onClick={this.showSlider.bind(this)} />}>
+                        cover={<img alt="example" src={defaultUrl} onClick={this.showSlider.bind(this)} />}>
                         <Meta
                             title={item.title}/>
                     </Card>

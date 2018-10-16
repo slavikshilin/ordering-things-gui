@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import ThingParamControl from './thingParamContol';
-import { bootParams } from '../../types/index'
+import ThingParamLabel from './thingParamLabel';
 
 class AddThingContent extends Component {
 
-    getThingParamsByType(params) {
-        const { thingAddActions } = this.props;
+    getThingParams() {
+        const { params, thingAddActions } = this.props;
         
         return (
             <div>
                 {Object.keys(params).map((element, i) =>
                     <div key={i} className="thing-block">
-                        <div>{params[element].Text}</div>
+                        <ThingParamLabel 
+                            paramType={params[element].ParamType} 
+                            text={params[element].Text} />
                         <div>
                             <ThingParamControl 
                                 paramName={element}
@@ -25,16 +27,6 @@ class AddThingContent extends Component {
                 )}
             </div>
         )
-    }
-
-    getThingParams() {
-        let thingType = this.props.thingType;  
-
-        if (thingType === 'boot') {
-            return this.getThingParamsByType(bootParams);
-        } else {
-            return null;
-        }
     }
 
     render() {
