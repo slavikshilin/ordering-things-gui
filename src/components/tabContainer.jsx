@@ -6,10 +6,6 @@ import AddThingButton from './addThing/addThingButton'
 
 class TabContainer extends Component {
 
-    state = {
-        loading: false
-    };
-
     render() {  
 
         const thingsInfo = (this.props.thingsInfo) ? this.props.thingsInfo : [];

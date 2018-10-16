@@ -5,18 +5,20 @@ import AuthHeader from './authHeader';
 import TabContainer from './tabContainer';
 import { getUserInfo } from '../core/utils/userInfo';
 import bootParams from '../types/boot/bootParams';
+import thingTypes from '../types/thingType';
 
 const TabPane = Tabs.TabPane;
-
-function callback(key) {
-    console.log(key);
-}
 
 class Home extends Component {
 
     constructor(props) {
         super(props);
-        props.thingsActions.fetchThings(null);
+        props.thingsActions.fetchThings(thingTypes.BOOT);
+    }
+
+    callback(key) {
+        this.props.thingsActions.fetchThings(key);
+        console.log(key);
     }
 
     render() {
@@ -32,7 +34,7 @@ class Home extends Component {
             galleryActions 
         } = this.props
 
-        const { thingsInfo, isFetching } = things;
+        const { thingsInfo, thingType, isFetching } = things;
 
         if (isFetching) {
           return (<Splash />)  
@@ -41,8 +43,8 @@ class Home extends Component {
                 <div className="main-layout">
                     <AuthHeader userInfo={getUserInfo(auth)} history={history} authActions={authActions} />
                     <div align="left">
-                        <Tabs defaultActiveKey="1" onChange={callback}>
-                            <TabPane tab="Обувь" key="1">
+                        <Tabs defaultActiveKey={thingType} onChange={this.callback.bind(this)}>
+                            <TabPane tab="Обувь" key={thingTypes.BOOT}>
                                 <TabContainer 
                                     thingAdd={thingAdd}
                                     params={bootParams}
@@ -53,7 +55,7 @@ class Home extends Component {
                                     galleryActions={galleryActions} 
                                     tabName="Обувь" />
                             </TabPane>
-                            <TabPane tab="Одежда" key="2">
+                            <TabPane tab="Одежда" key={thingTypes.CLOTHES}>
                                 <TabContainer 
                                     thingAdd={thingAdd}
                                     params={bootParams}
@@ -64,7 +66,7 @@ class Home extends Component {
                                     galleryActions={galleryActions} 
                                     tabName="Одежда" />
                             </TabPane>
-                            <TabPane tab="Сумки и рюкзаки" key="3">
+                            <TabPane tab="Сумки и рюкзаки" key={thingTypes.BAG}>
                                 <TabContainer 
                                     thingAdd={thingAdd}
                                     params={bootParams}
@@ -75,7 +77,7 @@ class Home extends Component {
                                     galleryActions={galleryActions} 
                                     tabName="Сумки и рюкзаки" />                        
                             </TabPane>                            
-                            <TabPane tab="Аксессуары" key="4">
+                            <TabPane tab="Аксессуары" key={thingTypes.ACCESSORIZE}>
                                 <TabContainer 
                                     thingAdd={thingAdd}
                                     params={bootParams}

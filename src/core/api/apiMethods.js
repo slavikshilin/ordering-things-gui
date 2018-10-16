@@ -56,14 +56,14 @@ export function getDownloadUrl(path) {
 
 /**
  * Получение списка вещей
- * @param {Object} filter Фильтр  
+ * @param {Object} typeThing фильтрация по типу т.к. firebase не подддерживает фильтрацию по нескольким параметрам  
  * @returns {Promise<Object>}
  */
-export function getData(filter=null) {
+export function getData(typeThing) {
 	var database = firebase.database();
 	var databaseRef = database.ref('things');
-	//var databaseFilteredRef = databaseRef.child('type').equalTo('boot');
-	return databaseRef.once("value");
+	var databaseFilteredRef = databaseRef.orderByChild('type').equalTo(typeThing);
+	return databaseFilteredRef.once("value");
 }
 
 /**

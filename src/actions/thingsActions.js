@@ -11,10 +11,10 @@ function requestThing() {
     }
 }
 
-function requestThingSuccess(thingsInfo) {
+function requestThingSuccess(thingsInfo, thingType) {
     return {
         type: REQUEST_THING_SUCCESS,
-        payload: thingsInfo
+        payload: { thingsInfo, thingType }
     }
 }
 
@@ -25,14 +25,14 @@ function requestThingError(err) {
     }
 }
 
-export function fetchThings(filter) {
+export function fetchThings(thingType) {
     return (dispatch) => {
 
         dispatch(requestThing())
 
-        getData(filter)
+        getData(thingType)
             .then((snapshot) => {
-                dispatch(requestThingSuccess(snapshot.val())); 
+                dispatch(requestThingSuccess(snapshot.val(), thingType)); 
             })
             .catch(err => {
                 console.log(err);
@@ -47,8 +47,18 @@ export function fetchAddThing(thing) {
         dispatch(requestThing())
 
         addThing(thing)
-            .then((res) => {
-                dispatch(requestThingSuccess(res));
+            .then(() => {
+
+                // получаем все данные с сервера
+                getData(thing.type)
+                    .then((snapshot) => {
+                        dispatch(requestThingSuccess(snapshot.val(), thing.type)); 
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        throw err;
+                    })
+
             }
             )
             .catch(
@@ -66,9 +76,9 @@ export function fetchEdit(thing) {
         editThing(thing)
             .then(() => {
                 // получаем все данные с сервера
-                getData()
+                getData(thing.type)
                     .then((snapshot) => {
-                        dispatch(requestThingSuccess(snapshot.val())); 
+                        dispatch(requestThingSuccess(snapshot.val(), thing.type)); 
                     })
                     .catch(err => {
                         console.log(err);
@@ -102,9 +112,9 @@ export function fetchAddImage(item, file, showMessage) {
                                 .then(() => {
                                     showMessage();
                                     // получаем все данные с сервера
-                                    getData()
+                                    getData(item.type)
                                         .then((snapshot) => {
-                                            dispatch(requestThingSuccess(snapshot.val())); 
+                                            dispatch(requestThingSuccess(snapshot.val(), item.type)); 
                                         })
                                         .catch(err => {
                                             console.log(err);

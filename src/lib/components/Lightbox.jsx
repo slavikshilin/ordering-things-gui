@@ -39,7 +39,7 @@ Lightbox.propTypes = {
         title: PropTypes.string,
         description: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
         thumbnail: PropTypes.string
-    })).isRequired,
+    })),
     showImageModifiers: PropTypes.bool,
     renderDescriptionFunc: PropTypes.func
 }
