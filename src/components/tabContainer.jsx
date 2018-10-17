@@ -21,7 +21,7 @@ class TabContainer extends Component {
                     thingsActions={thingsActions} 
                     thingAddActions={thingAddActions} />
                 <List
-                    grid={{ gutter: 16, xs: 1, sm: 2, md: 5, lg: 5, xl: 5, xxl: 5 }}
+                    grid={{ gutter: 16, xs: 1, sm: 2, md: 3, lg: 4, xl: 5, xxl: 6 }}
                     dataSource={Object.values(thingsInfo)}
                     renderItem={item => { 
                         return <CardItem 
