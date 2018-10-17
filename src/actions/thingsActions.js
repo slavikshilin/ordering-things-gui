@@ -25,9 +25,10 @@ function requestThingError(err) {
     }
 }
 
-function sortByDate(list) {
+function sortByDateAndFilter(list, filter) {
 
     let sortesList = list;
+    let filteredList = null;
 
     if (list) {
         sortesList = Object.values(list);
@@ -37,19 +38,33 @@ function sortByDate(list) {
                 return b.createDate - a.createDate;
             });
         }
+
+        filteredList = sortesList;
+
+        if (filter) {
+
+            for (let key in filter) {
+
+                filteredList = filteredList.filter(item => { 
+                    return item[key].startsWith(filter[key]); 
+                });
+            }
+
+        }
+
     }
 
-    return sortesList;
+    return filteredList;
 }
 
-export function fetchThings(thingType) {
+export function fetchThings(thingType, filter) {
     return (dispatch) => {
 
         dispatch(requestThing())
 
         getData(thingType)
             .then((snapshot) => {
-                const list = sortByDate(snapshot.val());                
+                const list = sortByDateAndFilter(snapshot.val(), filter);                
                 dispatch(requestThingSuccess(list, thingType)); 
             })
             .catch(err => {
@@ -59,7 +74,7 @@ export function fetchThings(thingType) {
     }
 }
 
-export function fetchAddThing(thing) {
+export function fetchAddThing(thing, filter) {
     return (dispatch) => {
 
         dispatch(requestThing())
@@ -70,7 +85,7 @@ export function fetchAddThing(thing) {
                 // получаем все данные с сервера
                 getData(thing.type)
                     .then((snapshot) => {
-                        const list = sortByDate(snapshot.val());                
+                        const list = sortByDateAndFilter(snapshot.val(), filter);                
                         dispatch(requestThingSuccess(list, thing.type)); 
                     })
                     .catch(err => {
@@ -88,7 +103,7 @@ export function fetchAddThing(thing) {
     }
 }
 
-export function fetchEditThing(thing) {
+export function fetchEditThing(thing, filter) {
     return (dispatch) => {
 
         dispatch(requestThing())
@@ -99,7 +114,7 @@ export function fetchEditThing(thing) {
                 // получаем все данные с сервера
                 getData(thing.type)
                     .then((snapshot) => {
-                        const list = sortByDate(snapshot.val());                
+                        const list = sortByDateAndFilter(snapshot.val(), filter);                
                         dispatch(requestThingSuccess(list, thing.type)); 
                     })
                     .catch(err => {
@@ -117,7 +132,7 @@ export function fetchEditThing(thing) {
     }
 }
 
-export function fetchAddImage(item, file, showMessage) {
+export function fetchAddImage(item, file, showMessage, filter) {
     return (dispatch) => {
 
         dispatch(requestThing())
@@ -137,7 +152,7 @@ export function fetchAddImage(item, file, showMessage) {
                                     // получаем все данные с сервера
                                     getData(item.type)
                                         .then((snapshot) => {
-                                            const list = sortByDate(snapshot.val());                
+                                            const list = sortByDateAndFilter(snapshot.val(), filter);                
                                             dispatch(requestThingSuccess(list, item.type)); 
                                         })
                                         .catch(err => {
@@ -173,7 +188,7 @@ export function fetchAddImage(item, file, showMessage) {
 }
 
 
-export function fetchRemove(thing) {
+export function fetchRemove(thing, filter) {
     return (dispatch) => {
 
         dispatch(requestThing())
@@ -183,7 +198,7 @@ export function fetchRemove(thing) {
                 // получаем все данные с сервера
                 getData(thing.type)
                     .then((snapshot) => {
-                        const list = sortByDate(snapshot.val());                
+                        const list = sortByDateAndFilter(snapshot.val(), filter);                
                         dispatch(requestThingSuccess(list, thing.type)); 
                     })
                     .catch(err => {
