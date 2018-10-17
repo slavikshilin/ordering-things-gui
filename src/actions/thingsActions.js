@@ -25,6 +25,23 @@ function requestThingError(err) {
     }
 }
 
+function sortByDate(list) {
+
+    let sortesList = list;
+
+    if (list) {
+        sortesList = Object.values(list);
+
+        if (sortesList.length > 1) {
+            sortesList.sort(function(a, b) {
+                return b.createDate - a.createDate;
+            });
+        }
+    }
+
+    return sortesList;
+}
+
 export function fetchThings(thingType) {
     return (dispatch) => {
 
@@ -32,7 +49,8 @@ export function fetchThings(thingType) {
 
         getData(thingType)
             .then((snapshot) => {
-                dispatch(requestThingSuccess(snapshot.val(), thingType)); 
+                const list = sortByDate(snapshot.val());                
+                dispatch(requestThingSuccess(list, thingType)); 
             })
             .catch(err => {
                 console.log(err);
@@ -52,7 +70,8 @@ export function fetchAddThing(thing) {
                 // получаем все данные с сервера
                 getData(thing.type)
                     .then((snapshot) => {
-                        dispatch(requestThingSuccess(snapshot.val(), thing.type)); 
+                        const list = sortByDate(snapshot.val());                
+                        dispatch(requestThingSuccess(list, thing.type)); 
                     })
                     .catch(err => {
                         console.log(err);
@@ -80,7 +99,8 @@ export function fetchEditThing(thing) {
                 // получаем все данные с сервера
                 getData(thing.type)
                     .then((snapshot) => {
-                        dispatch(requestThingSuccess(snapshot.val(), thing.type)); 
+                        const list = sortByDate(snapshot.val());                
+                        dispatch(requestThingSuccess(list, thing.type)); 
                     })
                     .catch(err => {
                         console.log(err);
@@ -117,7 +137,8 @@ export function fetchAddImage(item, file, showMessage) {
                                     // получаем все данные с сервера
                                     getData(item.type)
                                         .then((snapshot) => {
-                                            dispatch(requestThingSuccess(snapshot.val(), item.type)); 
+                                            const list = sortByDate(snapshot.val());                
+                                            dispatch(requestThingSuccess(list, item.type)); 
                                         })
                                         .catch(err => {
                                             console.log(err);
@@ -162,7 +183,8 @@ export function fetchRemove(thing) {
                 // получаем все данные с сервера
                 getData(thing.type)
                     .then((snapshot) => {
-                        dispatch(requestThingSuccess(snapshot.val(), thing.type)); 
+                        const list = sortByDate(snapshot.val());                
+                        dispatch(requestThingSuccess(list, thing.type)); 
                     })
                     .catch(err => {
                         console.log(err);

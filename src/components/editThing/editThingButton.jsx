@@ -43,12 +43,12 @@ class EditThingButton extends Component {
 
                     thingsActions.fetchEditThing(thingAdd.thingAdd);
                     thingAddActions.thingAddOk();
-                    console.log('OK');
+                    console.log('OK edit');
                 }
             },
             onCancel() {
                 thingAddActions.thingAddCancel();
-                console.log('Cancel');
+                console.log('Cancel edit');
             },
         });
     }
