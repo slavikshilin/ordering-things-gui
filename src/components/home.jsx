@@ -7,6 +7,7 @@ import { getUserInfo } from '../core/utils/userInfo';
 import bootParams from '../types/boot/bootParams';
 import clothesParams from '../types/clothes/clothesParams';
 import bagParams from '../types/bag/bagParams';
+import accessorizeParams from '../types/accessorize/accessorizeParams';
 import thingTypes from '../types/thingType';
 
 const TabPane = Tabs.TabPane;
@@ -82,7 +83,7 @@ class Home extends Component {
                             <TabPane tab="Аксессуары" key={thingTypes.ACCESSORIZE}>
                                 <TabContainer 
                                     thingAdd={thingAdd}
-                                    params={bootParams}
+                                    params={accessorizeParams}
                                     thingsInfo={thingsInfo} 
                                     gallery={gallery} 
                                     thingsActions={thingsActions}
