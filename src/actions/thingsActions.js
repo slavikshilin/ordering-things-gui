@@ -69,12 +69,14 @@ export function fetchAddThing(thing) {
     }
 }
 
-export function fetchEdit(thing) {
+export function fetchEditThing(thing) {
     return (dispatch) => {
 
         dispatch(requestThing())
+
         editThing(thing)
             .then(() => {
+
                 // получаем все данные с сервера
                 getData(thing.type)
                     .then((snapshot) => {
@@ -84,11 +86,12 @@ export function fetchEdit(thing) {
                         console.log(err);
                         throw err;
                     })
+
             }
             )
             .catch(
                 err => {
-                    dispatch(requestThingError(new Error(err)))
+                    dispatch(requestThingError(err))
                 }
             )
     }

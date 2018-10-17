@@ -19,8 +19,8 @@ const ThingInfoPopover = props => {
 
     const content = (
         <div>
-            {contentInfo(props).map(popoverItem =>
-                <ThingInfoPopoverItem popoverItem={popoverItem} />    
+            {contentInfo(props).map((popoverItem, i) =>
+                <ThingInfoPopoverItem popoverItem={popoverItem} key={i} />    
             )}
         </div>
     )

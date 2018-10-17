@@ -22,13 +22,13 @@ const ThingParamControl = props => {
         )
     } else if (paramType === paramControlType.INPUT) {
         return <Input 
-                    value={defaultValue}
+                    defaultValue={defaultValue}
                     maxLength="50" 
                     style={{ width: 500 }} 
                     onChange={(e) => thingAddActions.thingAddChange({ paramName: paramName, paramValue: e.target.value })} />
     } else if (paramType === paramControlType.TEXT_AREA) {
         return <TextArea 
-                    value={defaultValue}
+                    defaultValue={defaultValue}
                     maxLength="250" 
                     autosize={{ minRows: 2, maxRows: 5 }} 
                     style={{ width: 500 }}

@@ -25,6 +25,7 @@ class TabContainer extends Component {
                     dataSource={Object.values(thingsInfo)}
                     renderItem={item => { 
                         return <CardItem 
+                                    thingAdd={thingAdd}
                                     item={item} 
                                     gallery={gallery} 
                                     thingsActions={thingsActions}

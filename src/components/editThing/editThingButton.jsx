@@ -6,11 +6,13 @@ const confirm = Modal.confirm;
 
 class EditThingButton extends Component {
     
-    getDefaultThing(params) {
+    getDefaultThing(fullThingInfo) {
         let defaultThing = {};
-        for (var key in params) {
-            defaultThing[key] = params[key].Default;
+        
+        for (var key in fullThingInfo) {
+            defaultThing[key] = fullThingInfo[key].value;
         }
+        
         return defaultThing;
     }
 
@@ -20,8 +22,8 @@ class EditThingButton extends Component {
 
         const params = getThingParams(thingInfo.type);
         const fullThingInfo = getFullThingInfo(thingInfo);
-        const defaultThing = this.getDefaultThing(params);
-
+        let defaultThing = this.getDefaultThing(fullThingInfo);
+        defaultThing.key = thingInfo.key;
         thingAddActions.thingAddDefault(defaultThing);
 
         confirm({
@@ -37,14 +39,15 @@ class EditThingButton extends Component {
                 if (thingAdd) {
                     // Set current datetime
                     thingAdd.thingAdd.createDate = Date.now();
+                    thingAdd.thingAdd.type = thingInfo.type;
 
-                    //thingsActions.fetchAddThing(thingAdd.thingAdd);
-                    //thingAddActions.thingAddOk();
+                    thingsActions.fetchEditThing(thingAdd.thingAdd);
+                    thingAddActions.thingAddOk();
                     console.log('OK');
                 }
             },
             onCancel() {
-                //thingAddActions.thingAddCancel();
+                thingAddActions.thingAddCancel();
                 console.log('Cancel');
             },
         });

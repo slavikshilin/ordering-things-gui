@@ -58,7 +58,7 @@ class CardItem extends Component {
     }
 
     render() {
-        const { item, gallery, galleryActions, thingsActions, thingAddActions } = this.props;
+        const { thingAdd, item, gallery, galleryActions, thingsActions, thingAddActions } = this.props;
         const show = (item === gallery.item) && (item.urls);
 
         const defaultUrl = (item.urls) ? Object.values(item.urls)[0].url : 'https://firebasestorage.googleapis.com/v0/b/ordering-things-api.appspot.com/o/default%2Fempty.jpg?alt=media&token=427e09b3-98ac-4967-b058-74c99a039f86';
@@ -93,7 +93,7 @@ class CardItem extends Component {
 
                                 <ThingInfoPopover thingInfo={item} />,
 
-                                <EditThingButton thingInfo={item} thingsActions={thingsActions} thingAddActions={thingAddActions} />,
+                                <EditThingButton thingAdd={thingAdd} thingInfo={item} thingsActions={thingsActions} thingAddActions={thingAddActions} />,
 
                                 <Tooltip placement="bottomLeft" title="Удалить">
                                     <Icon type="delete" onClick={this.showDeleteConfirm.bind(this)} />
