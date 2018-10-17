@@ -4,7 +4,7 @@ import clothesParams from '../types/clothes/clothesParams';
 import bagParams from '../types/bag/bagParams';
 import accessorizeParams from '../types/accessorize/accessorizeParams';
 
-function getThingParams(type) {
+export function getThingParams(type) {
     if (type === thingType.BOOT) {
         return bootParams;
     } else if (type === thingType.CLOTHES) {
@@ -18,7 +18,7 @@ function getThingParams(type) {
     }  
 }
 
-export default function getFullThingInfo(thingInfo) {
+export function getFullThingInfo(thingInfo) {
     const params = getThingParams(thingInfo.type);
     let result = {};
 

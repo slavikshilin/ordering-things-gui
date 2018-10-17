@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import { Popover, Icon } from 'antd';
-import getFullThingInfo from '../mapping/fullThingInfo';
+import { getFullThingInfo } from '../mapping/fullThingInfo';
 import ThingInfoPopoverItem from './thingInfoPopoverItem';
 
 const ThingInfoPopover = props => {
