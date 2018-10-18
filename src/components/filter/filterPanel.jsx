@@ -12,9 +12,9 @@ const FilterPanel = props => {
         filterActions.enableFilter(checked);
 
         if (checked) {
-            thingsActions.filterThings(thingsInfo, filter.filter);
+            thingsActions.filterThingsApply(thingsInfo, filter.filter);
         } else {
-            thingsActions.fetchThings(params.type.Default, {});    
+            thingsActions.filterThingsAbort();    
         }
     }
 
