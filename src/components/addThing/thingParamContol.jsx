@@ -40,12 +40,14 @@ const ThingParamControl = props => {
     } else if (paramTypeLocal === paramControlType.INPUT) {
         return <Input 
                     defaultValue={defaultValue}
+                    value={defaultValue}
                     maxLength="50" 
                     style={{ width: controlWidth }} 
                     onChange={(e) => paramChange({ paramName: paramName, paramValue: e.target.value })} />
     } else if (paramTypeLocal === paramControlType.TEXT_AREA) {
         return <TextArea 
                     defaultValue={defaultValue}
+                    value={defaultValue}
                     maxLength="250" 
                     autosize={{ minRows: 2, maxRows: 5 }} 
                     style={{ width: controlWidth }}
