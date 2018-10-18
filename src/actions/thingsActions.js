@@ -1,5 +1,6 @@
 import { addFile, removeThing, getDownloadUrl, getData, addThing, editThing, AddThingImage } from '../core/api/apiMethods';
 import guid from '../core/utils/guid'
+import isEmptyOrNull from '../core/utils/checkEmpty';
 
 export const REQUEST_THING = 'REQUEST_THING';
 export const REQUEST_THING_SUCCESS = 'REQUEST_THING_SUCCESS';
@@ -41,7 +42,7 @@ function sortByDateAndFilter(list, filter) {
 
         filteredList = sortesList;
 
-        if (filter) {
+        if (!isEmptyOrNull(filter)) {
 
             for (let key in filter) {
 

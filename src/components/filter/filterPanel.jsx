@@ -1,18 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'antd';
+import { Button, Checkbox } from 'antd';
 import ThingParamControl from '../addThing/thingParamContol';
 import ThingParamLabel from '../addThing/thingParamLabel';
 import paramControlType from '../../types/paramControlType';
 
 const FilterPanel = props => {
-    const { params, filterActions } = props
+    const { filter, params, filterActions, thingsActions } = props
+
+    const setEnableFilter = (checked) => {
+        filterActions.enableFilter(checked);
+
+        if (checked) {
+            thingsActions.fetchThings(params.type.Default, filter.filter);
+        } else {
+            thingsActions.fetchThings(params.type.Default, {});    
+        }
+    }
 
     return (
         <div className="filter-panel">
             {Object.keys(params).map((element, i) =>
                 {
                     if ((params[element].ParamType !== paramControlType.NONE)) {
+                        
+                        let defaultValue = '';
+                        let useFilter = false;
+                        if (filter.filter[element]) {
+                            defaultValue = filter.filter[element];
+                            useFilter = true;
+                        } 
+                        
                         return (
                             <div key={i} className="thing-block">
                                 <ThingParamLabel 
@@ -21,11 +39,12 @@ const FilterPanel = props => {
                                     paramName={element}
                                     paramType={params[element].ParamType} 
                                     list={params[element].List} 
-                                    defaultValue="" 
+                                    defaultValue={defaultValue} 
                                     paramChange={filterActions.changeFilter} 
                                     controlWidth={180}
                                     hasEmptyItem
                                     onlyInput
+                                    useFilter={useFilter}
                                 />
                             </div>
                         )
@@ -35,7 +54,10 @@ const FilterPanel = props => {
 
                 }
             )}
-            <div className="btn-filter"><Button onClick={() => {filterActions.clearFilter()}}>Сбросить фильтр</Button></div>
+            <div className="btn-filter">
+                <Checkbox checked={filter.enableFilter} onChange={(e) => setEnableFilter(e.target.checked)}>Фильтровать</Checkbox>
+                <Button size="small" onClick={() => {filterActions.clearFilter()}}>Сбросить фильтр</Button>
+            </div>
         </div>
     )
 

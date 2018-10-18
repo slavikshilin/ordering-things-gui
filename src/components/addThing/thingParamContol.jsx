@@ -7,7 +7,7 @@ const Option = Select.Option;
 const { TextArea } = Input;
 
 const ThingParamControl = props => {
-    const { paramName, paramType, list, defaultValue, paramChange, controlWidth, hasEmptyItem, onlyInput } = props;
+    const { paramName, paramType, list, defaultValue, paramChange, controlWidth, hasEmptyItem, onlyInput, useFilter } = props;
     
     const DEFAULT_EMPTY = '-';
     let listLocal = [];
@@ -18,7 +18,9 @@ const ThingParamControl = props => {
         listLocal = Object.values(list);
         if (hasEmptyItem) {
             listLocal.unshift(DEFAULT_EMPTY);
-            defaultValueLocal = DEFAULT_EMPTY;
+            if (!useFilter) {
+                defaultValueLocal = DEFAULT_EMPTY;
+            }
         }
     }
 
