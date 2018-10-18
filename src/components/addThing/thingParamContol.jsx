@@ -26,7 +26,9 @@ const ThingParamControl = props => {
 
     if (paramType === paramControlType.SELECT) {
         return (
-            <Select defaultValue={defaultValueLocal} 
+            <Select 
+                defaultValue={defaultValueLocal}
+                value={defaultValueLocal} 
                 style={{ width: controlWidth }} 
                 onChange={value => paramChange({ paramName: paramName, paramValue: value })} >
                 
