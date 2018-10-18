@@ -22,7 +22,7 @@ class AddThingContent extends Component {
                                         paramType={params[element].ParamType} 
                                         list={params[element].List} 
                                         defaultValue={params[element].Default} 
-                                        thingAddActions={thingAddActions} 
+                                        paramChange={thingAddActions.thingAddChange} 
                                         controlWidth={500}
                                     />
                                 </div>

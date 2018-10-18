@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button } from 'antd';
 import ThingParamControl from '../addThing/thingParamContol';
 import ThingParamLabel from '../addThing/thingParamLabel';
 import paramControlType from '../../types/paramControlType';
 
 const FilterPanel = props => {
-    const { params, thingAddActions } = props
+    const { params, filterActions } = props
 
     return (
         <div className="filter-panel">
@@ -21,7 +22,7 @@ const FilterPanel = props => {
                                     paramType={params[element].ParamType} 
                                     list={params[element].List} 
                                     defaultValue="" 
-                                    thingAddActions={thingAddActions} 
+                                    paramChange={filterActions.changeFilter} 
                                     controlWidth={180}
                                     hasEmptyItem
                                     onlyInput
@@ -34,6 +35,7 @@ const FilterPanel = props => {
 
                 }
             )}
+            <div className="btn-filter"><Button onClick={() => {filterActions.clearFilter()}}>Сбросить фильтр</Button></div>
         </div>
     )
 

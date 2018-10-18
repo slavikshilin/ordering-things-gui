@@ -38,7 +38,7 @@ class EditThingButton extends Component {
 
                 if (thingAdd) {
                     // Set current datetime
-                    thingAdd.thingAdd.createDate = Date.now();
+                    thingAdd.thingAdd.updateDate = Date.now();
                     thingAdd.thingAdd.type = thingInfo.type;
 
                     thingsActions.fetchEditThing(thingAdd.thingAdd);

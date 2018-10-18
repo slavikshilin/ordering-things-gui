@@ -31,7 +31,7 @@ class EditThingContent extends Component {
                                             paramType={params[element].ParamType} 
                                             list={params[element].List} 
                                             defaultValue={this.getCurrentValue(fullThingInfo, element)} 
-                                            thingAddActions={thingAddActions} 
+                                            paramChange={thingAddActions.thingAddChange}  
                                             controlWidth={500}
                                         />
                                     </div>

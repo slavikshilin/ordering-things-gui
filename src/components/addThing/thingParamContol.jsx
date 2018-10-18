@@ -7,7 +7,7 @@ const Option = Select.Option;
 const { TextArea } = Input;
 
 const ThingParamControl = props => {
-    const { paramName, paramType, list, defaultValue, thingAddActions, controlWidth, hasEmptyItem, onlyInput } = props;
+    const { paramName, paramType, list, defaultValue, paramChange, controlWidth, hasEmptyItem, onlyInput } = props;
     
     const DEFAULT_EMPTY = '-';
     let listLocal = [];
@@ -26,7 +26,7 @@ const ThingParamControl = props => {
         return (
             <Select defaultValue={defaultValueLocal} 
                 style={{ width: controlWidth }} 
-                onChange={value => thingAddActions.thingAddChange({ paramName: paramName, paramValue: value })} >
+                onChange={value => paramChange({ paramName: paramName, paramValue: value })} >
                 
                 {listLocal.map((paramItem, i) =>
                     <Option value={paramItem} key={i} >{paramItem}</Option>
@@ -38,14 +38,14 @@ const ThingParamControl = props => {
                     defaultValue={defaultValue}
                     maxLength="50" 
                     style={{ width: controlWidth }} 
-                    onChange={(e) => thingAddActions.thingAddChange({ paramName: paramName, paramValue: e.target.value })} />
+                    onChange={(e) => paramChange({ paramName: paramName, paramValue: e.target.value })} />
     } else if (paramTypeLocal === paramControlType.TEXT_AREA) {
         return <TextArea 
                     defaultValue={defaultValue}
                     maxLength="250" 
                     autosize={{ minRows: 2, maxRows: 5 }} 
                     style={{ width: controlWidth }}
-                    onChange={(e) => thingAddActions.thingAddChange({ paramName: paramName, paramValue: e.target.value })}  />
+                    onChange={(e) => paramChange({ paramName: paramName, paramValue: e.target.value })}  />
     } else {
         return null
     }

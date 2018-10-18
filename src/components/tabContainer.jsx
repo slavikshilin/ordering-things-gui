@@ -10,18 +10,20 @@ class TabContainer extends Component {
     render() {  
 
         const thingsInfo = (this.props.thingsInfo) ? this.props.thingsInfo : [];
-        const { thingAdd, params, gallery, thingsActions, thingAddActions, galleryActions } = this.props; 
+        const { filter, thingAdd, params, gallery, thingsActions, thingAddActions, galleryActions, filterActions } = this.props; 
 
         return (
             <div>
-                <FilterPanel params={params} thingAddActions={thingAddActions} />
-                <AddThingButton 
-                    thingAdd={thingAdd} 
-                    params={params} 
-                    thingsInfo={thingsInfo} 
-                    gallery={gallery} 
-                    thingsActions={thingsActions} 
-                    thingAddActions={thingAddActions} />
+                <div>
+                    <FilterPanel filter={filter} params={params} filterActions={filterActions} />
+                    <AddThingButton 
+                        thingAdd={thingAdd} 
+                        params={params} 
+                        thingsInfo={thingsInfo} 
+                        gallery={gallery} 
+                        thingsActions={thingsActions} 
+                        thingAddActions={thingAddActions} />
+                </div>
                 <List
                     grid={{ gutter: 16, xs: 1, sm: 2, md: 3, lg: 4, xl: 5, xxl: 6 }}
                     dataSource={Object.values(thingsInfo)}

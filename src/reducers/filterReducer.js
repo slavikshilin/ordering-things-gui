@@ -1,7 +1,7 @@
-import { CHANGE_FILTER, CLEAR_FILTER } from '../actions/filterActions'
+import { CHANGE_FILTER, CLEAR_FILTER } from '../actions/filterActions';
 
 const initialState = {
-    filter: null,
+    filter: {},
 }
 
 export function filterReducer(state = initialState, action) {
@@ -9,7 +9,9 @@ export function filterReducer(state = initialState, action) {
 
         case CHANGE_FILTER:
             {
-                let newState = { ...state, filter: action.payload }
+                let oldFilter = state.filter;
+                let newFilter = { ...oldFilter, [action.payload.paramName]: action.payload.paramValue };    
+                let newState = { ...state, filter: newFilter }
                 return newState
             }
             
