@@ -298,3 +298,35 @@ p {
   color: black;
 }
 
+.filter-panel {
+  display: inline-block;
+} 
+
+.filter-panel .thing-block {
+  display: inline-block;
+} 
+
+.filter-panel .ant-input {
+  width: 150px;
+  font-size: 12px;
+  height: 20px;
+}
+
+.filter-panel .ant-select {
+  width: 150px;
+  font-size: 12px;
+  height: 20px;
+}
+
+.filter-panel .ant-select-selection--single {
+  height: 20px;  
+} 
+
+.filter-panel .ant-select-selection__rendered {
+  line-height: 18px;
+} 
+
+.filter-panel .thing-block {
+  padding-right: 6px;
+  padding-left: 7px;
+}

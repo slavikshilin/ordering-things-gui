@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { List } from 'antd';
 import CardItem from './cardItem';
-import AddThingButton from './addThing/addThingButton'
+import AddThingButton from './addThing/addThingButton';
+import FilterPanel from './filter/filterPanel';
 
 
 class TabContainer extends Component {
@@ -13,6 +14,7 @@ class TabContainer extends Component {
 
         return (
             <div>
+                <FilterPanel params={params} thingAddActions={thingAddActions} />
                 <AddThingButton 
                     thingAdd={thingAdd} 
                     params={params} 
