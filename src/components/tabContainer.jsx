@@ -15,7 +15,7 @@ class TabContainer extends Component {
         return (
             <div>
                 <div>
-                    <FilterPanel filter={filter} params={params} filterActions={filterActions} thingsActions={thingsActions} />
+                    <FilterPanel thingsInfo={thingsInfo} filter={filter} params={params} filterActions={filterActions} thingsActions={thingsActions} />
                     <AddThingButton 
                         thingAdd={thingAdd} 
                         params={params} 

@@ -5,6 +5,8 @@ import isEmptyOrNull from '../core/utils/checkEmpty';
 export const REQUEST_THING = 'REQUEST_THING';
 export const REQUEST_THING_SUCCESS = 'REQUEST_THING_SUCCESS';
 export const REQUEST_THING_FAILED = 'REQUEST_THING_FAILED';
+export const REQUEST_THING_FILTER = 'REQUEST_THING_FILTER';
+
 
 function requestThing() {
     return {
@@ -23,6 +25,13 @@ function requestThingError(err) {
     return {
         type: REQUEST_THING_FAILED,
         payload: err
+    }
+}
+
+function requestThingFilter(thingsInfo) {
+    return {
+        type: REQUEST_THING_FILTER,
+        payload: thingsInfo
     }
 }
 
@@ -56,6 +65,13 @@ function sortByDateAndFilter(list, filter) {
     }
 
     return filteredList;
+}
+
+export function filterThings(things, filter) {
+    return (dispatch) => {
+        const filteredThings = sortByDateAndFilter(things, filter) 
+        dispatch(requestThingFilter(filteredThings))
+    }    
 }
 
 export function fetchThings(thingType, filter) {

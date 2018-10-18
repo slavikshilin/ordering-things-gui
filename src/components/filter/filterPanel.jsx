@@ -6,13 +6,13 @@ import ThingParamLabel from '../addThing/thingParamLabel';
 import paramControlType from '../../types/paramControlType';
 
 const FilterPanel = props => {
-    const { filter, params, filterActions, thingsActions } = props
+    const { thingsInfo, filter, params, filterActions, thingsActions } = props
 
     const setEnableFilter = (checked) => {
         filterActions.enableFilter(checked);
 
         if (checked) {
-            thingsActions.fetchThings(params.type.Default, filter.filter);
+            thingsActions.filterThings(thingsInfo, filter.filter);
         } else {
             thingsActions.fetchThings(params.type.Default, {});    
         }
