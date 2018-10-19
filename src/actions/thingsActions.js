@@ -63,7 +63,19 @@ function sortByDateAndFilter(list, filter) {
             for (let key in filter) {
 
                 filteredList = filteredList.filter(item => { 
-                    return item[key].startsWith(filter[key]); 
+                    const typeKey = typeof item[key];
+                    if ((filter[key] !== '') && (filter[key] !== '-'))
+                    {
+                        if (typeKey === 'string') {
+                            return item[key].startsWith(filter[key]); 
+                        } else if ((typeKey === 'boolean') || (typeKey === 'number')) {
+                            return (item[key] === filter[key]); 
+                        } else {
+                            return false;
+                        }
+                    } else {
+                        return false;
+                    }
                 });
             }
 

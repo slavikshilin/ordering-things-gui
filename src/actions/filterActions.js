@@ -14,10 +14,3 @@ export function clearFilter() {
         type: CLEAR_FILTER
     }
 }
-
-export function enableFilter(enabled) {
-    return {
-        type: ENABLE_FILTER,
-        payload: enabled
-    }
-}

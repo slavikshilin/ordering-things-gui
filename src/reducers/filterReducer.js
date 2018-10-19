@@ -1,8 +1,7 @@
-import { CHANGE_FILTER, CLEAR_FILTER, ENABLE_FILTER } from '../actions/filterActions';
+import { CHANGE_FILTER, CLEAR_FILTER } from '../actions/filterActions';
 
 const initialState = {
-    filter: {},
-    enableFilter: false
+    filter: {}
 }
 
 export function filterReducer(state = initialState, action) {
@@ -21,12 +20,6 @@ export function filterReducer(state = initialState, action) {
                 let newState = { ...initialState }
                 return newState
             }    
-            
-        case ENABLE_FILTER:
-            {
-                let newState = { ...state, enableFilter: action.payload }
-                return newState
-            }              
 
         default:
             return state
