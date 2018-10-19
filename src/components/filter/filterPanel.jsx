@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'antd';
-import ThingParamControl from '../addThing/thingParamContol';
+import ThingFilterControl from './thingFilterContol';
 import ThingParamLabel from '../addThing/thingParamLabel';
 import paramControlType from '../../types/paramControlType';
 
@@ -32,7 +32,7 @@ class FilterPanel extends Component {
                                 <div key={i} className="thing-block">
                                     <ThingParamLabel 
                                         text={params[element].Text} />
-                                    <ThingParamControl 
+                                    <ThingFilterControl 
                                         paramName={element}
                                         paramType={params[element].ParamType} 
                                         list={params[element].List} 
