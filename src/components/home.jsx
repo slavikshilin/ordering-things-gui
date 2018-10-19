@@ -27,19 +27,17 @@ class Home extends Component {
     render() {
         const {
             auth,
-            filter,
             things,
             thingAdd,
             gallery,
             history,
             authActions,
-            filterActions,
             thingsActions,
             thingAddActions,
             galleryActions 
         } = this.props
 
-        const { thingsInfo, thingType, isFetching } = things;
+        const { thingType, isFetching } = things;
 
         if (isFetching) {
           return (<Splash />)  
@@ -51,12 +49,10 @@ class Home extends Component {
                         <Tabs defaultActiveKey={thingType} onChange={this.callback.bind(this)}>
                             <TabPane tab="Обувь" key={thingTypes.BOOT}>
                                 <TabContainer 
-                                    filter={filter}
                                     thingAdd={thingAdd}
                                     params={bootParams}
-                                    thingsInfo={thingsInfo} 
+                                    things={things} 
                                     gallery={gallery} 
-                                    filterActions={filterActions}
                                     thingsActions={thingsActions}
                                     thingAddActions={thingAddActions}
                                     galleryActions={galleryActions} 
@@ -64,12 +60,10 @@ class Home extends Component {
                             </TabPane>
                             <TabPane tab="Одежда" key={thingTypes.CLOTHES}>
                                 <TabContainer 
-                                    filter={filter}
                                     thingAdd={thingAdd}
                                     params={clothesParams}
-                                    thingsInfo={thingsInfo} 
+                                    things={things}  
                                     gallery={gallery} 
-                                    filterActions={filterActions}
                                     thingsActions={thingsActions}
                                     thingAddActions={thingAddActions}
                                     galleryActions={galleryActions} 
@@ -77,12 +71,10 @@ class Home extends Component {
                             </TabPane>
                             <TabPane tab="Сумки и рюкзаки" key={thingTypes.BAG}>
                                 <TabContainer 
-                                    filter={filter}
                                     thingAdd={thingAdd}
                                     params={bagParams}
-                                    thingsInfo={thingsInfo} 
+                                    things={things} 
                                     gallery={gallery} 
-                                    filterActions={filterActions}
                                     thingsActions={thingsActions}
                                     thingAddActions={thingAddActions}
                                     galleryActions={galleryActions} 
@@ -90,12 +82,10 @@ class Home extends Component {
                             </TabPane>                            
                             <TabPane tab="Аксессуары" key={thingTypes.ACCESSORIZE}>
                                 <TabContainer 
-                                    filter={filter}
                                     thingAdd={thingAdd}
                                     params={accessorizeParams}
-                                    thingsInfo={thingsInfo} 
+                                    things={things}  
                                     gallery={gallery} 
-                                    filterActions={filterActions}
                                     thingsActions={thingsActions}
                                     thingAddActions={thingAddActions}
                                     galleryActions={galleryActions} 

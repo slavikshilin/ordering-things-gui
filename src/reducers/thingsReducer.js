@@ -2,8 +2,8 @@ import {
     REQUEST_THING,
     REQUEST_THING_SUCCESS,
     REQUEST_THING_FAILED,
-    THING_FILTER_APPLY,
-    THING_FILTER_ABORT
+    CHANGE_FILTER, 
+    CLEAR_FILTER
 } from '../actions/thingsActions'
 
 const initialState = {
@@ -12,6 +12,7 @@ const initialState = {
     thingType: null,
     err: null,
     isFetching: false,
+    filter: {}
 }
 
 export function thingsReducer(state = initialState, action) {
@@ -35,17 +36,17 @@ export function thingsReducer(state = initialState, action) {
                 return newState
             }
 
-        case THING_FILTER_APPLY:
+        case CHANGE_FILTER:
             {
-                let newState = { ...state, thingsInfo: action.payload }
+                let newState = { ...state,  thingsInfo: action.payload.filteredList, filter: action.payload.filter }
                 return newState
             }
-  
-        case THING_FILTER_ABORT:
+            
+        case CLEAR_FILTER:
             {
-                let newState = { ...state, thingsInfo: state.thingsInfoOrig }
+                let newState = { ...state, thingsInfo: state.thingsInfoOrig, filter: {} }
                 return newState
-            }            
+            }           
 
         default:
             return state

@@ -6,8 +6,21 @@ export const REQUEST_THING = 'REQUEST_THING';
 export const REQUEST_THING_SUCCESS = 'REQUEST_THING_SUCCESS';
 export const REQUEST_THING_FAILED = 'REQUEST_THING_FAILED';
 
-export const THING_FILTER_APPLY = 'THING_FILTER_APPLY';
-export const THING_FILTER_ABORT = 'THING_FILTER_ABORT';
+export const CHANGE_FILTER = 'CHANGE_FILTER';
+export const CLEAR_FILTER = 'CLEAR_FILTER';
+
+function clearFilter() {
+    return {
+        type: CLEAR_FILTER
+    }
+}
+
+function changeFilter(thingsInfoFiltered, filter) {
+    return {
+        type: CHANGE_FILTER,
+        payload: { filteredList: thingsInfoFiltered, filter }
+    }
+}
 
 function requestThing() {
     return {
@@ -26,19 +39,6 @@ function requestThingError(err) {
     return {
         type: REQUEST_THING_FAILED,
         payload: err
-    }
-}
-
-function thingFilterApplay(thingsInfoFiltered) {
-    return {
-        type: THING_FILTER_APPLY,
-        payload: thingsInfoFiltered
-    }
-}
-
-function thingFilterAbort() {
-    return {
-        type: THING_FILTER_ABORT
     }
 }
 
@@ -64,21 +64,15 @@ function sortByDateAndFilter(list, filter) {
 
                 filteredList = filteredList.filter(item => { 
                     const typeKey = typeof item[key];
-                    if ((filter[key] !== '') && (filter[key] !== '-'))
-                    {
-                        if (typeKey === 'string') {
-                            return item[key].startsWith(filter[key]); 
-                        } else if ((typeKey === 'boolean') || (typeKey === 'number')) {
-                            return (item[key] === filter[key]); 
-                        } else {
-                            return false;
-                        }
+                    if (typeKey === 'string') {
+                        return item[key].startsWith(filter[key]); 
+                    } else if ((typeKey === 'boolean') || (typeKey === 'number')) {
+                        return (item[key] === filter[key]); 
                     } else {
                         return false;
                     }
                 });
             }
-
         }
 
     }
@@ -86,16 +80,30 @@ function sortByDateAndFilter(list, filter) {
     return filteredList;
 }
 
-export function filterThingsApply(things, filter) {
+export function filterThingsApply(things, filter, filterAdd) {
     return (dispatch) => {
-        const filteredThings = sortByDateAndFilter(things, filter) 
-        dispatch(thingFilterApplay(filteredThings))
+
+        let newFilter = {};
+        
+        for (let key in filter) {
+            if (key !== filterAdd.paramName) {
+                newFilter[key] = filter[key];
+            }
+        }
+
+        if ((filterAdd.paramValue !== '') && (filterAdd.paramValue !== '-'))
+        {
+            newFilter[filterAdd.paramName] = filterAdd.paramValue;
+        }
+
+        const filteredThings = sortByDateAndFilter(things, newFilter); 
+        dispatch(changeFilter(filteredThings, newFilter));
     }    
 }
 
-export function filterThingsAbort() {
+export function filterThingsClear() {
     return (dispatch) => {
-        dispatch(thingFilterAbort())
+        dispatch(clearFilter())
     }    
 }
 

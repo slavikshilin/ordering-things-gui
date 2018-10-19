@@ -8,14 +8,12 @@ import paramControlType from '../../types/paramControlType';
 class FilterPanel extends Component {
 
     applyFilter(filterAdd) {
-        const { thingsInfo, filter, filterActions, thingsActions } = this.props;
-        const newFilter = { ...filter.filter, [filterAdd.paramName]: filterAdd.paramValue };
-        filterActions.changeFilter(filterAdd);
-        thingsActions.filterThingsApply(thingsInfo, newFilter);
+        const { things, filter, thingsActions } = this.props;
+        thingsActions.filterThingsApply(things.thingsInfoOrig, filter, filterAdd);
     }
 
     render() {
-        const { filter, params, filterActions, thingsActions } = this.props;
+        const { things, params, filterActions, thingsActions } = this.props;
 
         return (
             <div className="filter-panel">
@@ -25,8 +23,8 @@ class FilterPanel extends Component {
                             
                             let defaultValue = '';
                             let useFilter = false;
-                            if (filter.filter[element]) {
-                                defaultValue = filter.filter[element];
+                            if (things.filter[element]) {
+                                defaultValue = things.filter[element];
                                 useFilter = true;
                             } 
                             

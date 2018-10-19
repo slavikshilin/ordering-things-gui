@@ -8,14 +8,14 @@ import FilterPanel from './filter/filterPanel';
 class TabContainer extends Component {
 
     render() {  
-
-        const thingsInfo = (this.props.thingsInfo) ? this.props.thingsInfo : [];
-        const { filter, thingAdd, params, gallery, thingsActions, thingAddActions, galleryActions, filterActions } = this.props; 
+     
+        const thingsInfo = (this.props.things.thingsInfo) ? this.props.things.thingsInfo : [];
+        const { thingAdd, params, gallery, thingsActions, thingAddActions, galleryActions } = this.props; 
 
         return (
             <div>
                 <div>
-                    <FilterPanel thingsInfo={thingsInfo} filter={filter} params={params} filterActions={filterActions} thingsActions={thingsActions} />
+                    <FilterPanel things={this.props.things} params={params} thingsActions={thingsActions} />
                     <AddThingButton 
                         thingAdd={thingAdd} 
                         params={params} 
