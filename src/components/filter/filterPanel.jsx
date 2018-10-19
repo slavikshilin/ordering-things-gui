@@ -8,12 +8,12 @@ import paramControlType from '../../types/paramControlType';
 class FilterPanel extends Component {
 
     applyFilter(filterAdd) {
-        const { things, filter, thingsActions } = this.props;
-        thingsActions.filterThingsApply(things.thingsInfoOrig, filter, filterAdd);
+        const { things, thingsActions } = this.props;
+        thingsActions.filterThingsApply(things.thingsInfoOrig, things.filter, filterAdd);
     }
 
     render() {
-        const { things, params, filterActions, thingsActions } = this.props;
+        const { things, params, thingsActions } = this.props;
 
         return (
             <div className="filter-panel">
@@ -53,8 +53,7 @@ class FilterPanel extends Component {
                 )}
                 <div className="btn-filter">
                     <Button size="small" onClick={() => {
-                        thingsActions.filterThingsAbort();
-                        filterActions.clearFilter();
+                        thingsActions.filterThingsClear();
                     }}>Сбросить фильтр</Button>
                 </div>
             </div>
