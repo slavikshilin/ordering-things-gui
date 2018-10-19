@@ -53,8 +53,13 @@ const ThingFilterControl = props => {
                     style={{ width: controlWidth }}
                     onChange={(e) => paramChange({ paramName: paramName, paramValue: e.target.value })}  />
     } else if (paramType === paramControlType.AUTO_COMPLETE) {
+        
+        const filteredList = ((defaultValue) && (defaultValue.length > 0)) ? list.filter(item => { 
+            return item.toUpperCase().startsWith(defaultValue.toUpperCase()); 
+        }) : list;
+
         return <AutoComplete 
-                    dataSource={list}
+                    dataSource={filteredList}
                     value={defaultValue}
                     defaultValue={defaultValue}
                     maxLength="250" 
