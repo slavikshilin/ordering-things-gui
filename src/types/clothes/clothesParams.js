@@ -4,6 +4,7 @@ import clothesSizeType from './clothesSizeType';
 import paramControlType from '../paramControlType';
 import seasonType from '../common/seasonType';
 import colorType from '../common/colorType';
+import clothesBrands from './clothesBrands';
  
  /**
  * Параметры одежды
@@ -18,7 +19,7 @@ const clothesParams = {
     title: { Text: "Название", ParamType: paramControlType.INPUT, Default: '' }, 
 
     /** Производитель */
-    vendor: { Text: "Производитель", ParamType: paramControlType.INPUT, Default: '' }, 
+    vendor: { Text: "Производитель", ParamType: paramControlType.AUTO_COMPLETE, List: clothesBrands, Default: '' }, 
 
     /** Сезон */
     seasonType: { Text: "Сезон",  ParamType: paramControlType.SELECT, List: seasonType, Default: seasonType.SUMMER }, 

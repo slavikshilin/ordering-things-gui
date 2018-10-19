@@ -65,7 +65,7 @@ function sortByDateAndFilter(list, filter) {
                 filteredList = filteredList.filter(item => { 
                     const typeKey = typeof item[key];
                     if (typeKey === 'string') {
-                        return item[key].startsWith(filter[key]); 
+                        return item[key].toUpperCase().startsWith(filter[key].toUpperCase()); 
                     } else if ((typeKey === 'boolean') || (typeKey === 'number')) {
                         return (item[key] === filter[key]); 
                     } else {

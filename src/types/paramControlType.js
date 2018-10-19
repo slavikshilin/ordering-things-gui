@@ -13,6 +13,9 @@ const paramControlType = {
 	/** text area */
     TEXT_AREA: "text_area",
 
+	/** auto complete */
+    AUTO_COMPLETE: "auto_complete",    
+
 	/** none */
     NONE: "none",    
 

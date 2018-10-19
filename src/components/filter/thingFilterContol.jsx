@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Select, Input } from 'antd';
+import { Select, Input, AutoComplete } from 'antd';
 import paramControlType from '../../types/paramControlType';
 
 const Option = Select.Option;
@@ -52,7 +52,15 @@ const ThingFilterControl = props => {
                     autosize={{ minRows: 2, maxRows: 5 }} 
                     style={{ width: controlWidth }}
                     onChange={(e) => paramChange({ paramName: paramName, paramValue: e.target.value })}  />
-    } else {
+    } else if (paramType === paramControlType.AUTO_COMPLETE) {
+        return <AutoComplete 
+                    dataSource={list}
+                    value={defaultValue}
+                    defaultValue={defaultValue}
+                    maxLength="250" 
+                    style={{ width: controlWidth }}
+                    onChange={(value) => paramChange({ paramName: paramName, paramValue: value })}  />
+    } else {  
         return null
     }
 }

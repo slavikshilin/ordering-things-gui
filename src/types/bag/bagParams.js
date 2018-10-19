@@ -2,7 +2,8 @@ import thingType from '../thingType';
 import bagType from './bagType';
 import paramControlType from '../paramControlType';
 import colorType from '../common/colorType';
- 
+import bagBrands from './bagBrands'; 
+
  /**
  * Параметры сумок
  * @enum {string}
@@ -16,7 +17,7 @@ const bagParams = {
     title: { Text: "Название", ParamType: paramControlType.INPUT, Default: '' }, 
 
     /** Производитель */
-    vendor: { Text: "Производитель", ParamType: paramControlType.INPUT, Default: '' }, 
+    vendor: { Text: "Производитель", ParamType: paramControlType.AUTO_COMPLETE, List: bagBrands, Default: '' }, 
 
     /** Цвет */   
     colorType: { Text: "Цвет",  ParamType: paramControlType.SELECT, List: colorType, Default: colorType.BLACK }, 
