@@ -20,7 +20,9 @@ class Home extends Component {
     }
 
     callback(key) {
-        this.props.thingsActions.fetchThings(key);
+        const { thingsActions } = this.props;
+        thingsActions.filterThingsClear();
+        thingsActions.fetchThings(key);
         console.log(key);
     }
 
