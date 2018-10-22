@@ -3,7 +3,6 @@ import { List, Card, Upload, Icon, message, Tooltip, Modal } from 'antd';
 import ThingInfoPopover from './thingInfoPopover';
 import EditThingButton from './editThing/editThingButton';
 import Lightbox from '../lib/index';
-import { minify } from '../core/utils/minifyJpegAsync';
 
 const { Meta } = Card;
 const { confirm } = Modal;
@@ -30,7 +29,6 @@ class CardItem extends Component {
         if (result) {
             thingsActions.fetchAddImage(item, file, showMessage);
         }
-
 
         return false;
     }
