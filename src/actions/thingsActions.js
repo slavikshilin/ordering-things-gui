@@ -1,6 +1,7 @@
 import { addFile, removeThing, getDownloadUrl, getData, addThing, editThing, AddThingImage } from '../core/api/apiMethods';
 import guid from '../core/utils/guid'
 import isEmptyOrNull from '../core/utils/checkEmpty';
+import { minify } from '../core/utils/minifyJpegAsync';
 
 export const REQUEST_THING = 'REQUEST_THING';
 export const REQUEST_THING_SUCCESS = 'REQUEST_THING_SUCCESS';
@@ -182,40 +183,81 @@ export function fetchEditThing(thing, filter) {
     }
 }
 
-export function fetchAddImage(item, file, showMessage, filter) {
+export function fetchAddImage(item, fileBig, showMessage, filter) {
     return (dispatch) => {
 
         dispatch(requestThing())
 
-        const fileName = guid();
-        addFile(file, fileName)
+        const fileBigName = guid();
+        addFile(fileBig, fileBigName)
             .then((resp) => {
                 if (resp.state === 'success') {
 
                     getDownloadUrl(resp.metadata.fullPath)
-                        .then(imageUrl => {
-                            
-                            const urlObj = { url: imageUrl };
-                            AddThingImage(item, urlObj)
-                                .then(() => {
-                                    showMessage();
-                                    // получаем все данные с сервера
-                                    getData(item.type)
-                                        .then((snapshot) => {
-                                            const list = sortByDateAndFilter(snapshot.val(), filter);                
-                                            dispatch(requestThingSuccess(list, item.type)); 
-                                        })
-                                        .catch(err => {
-                                            console.log(err);
-                                            throw err;
-                                        })
-                                }
-                                )
-                                .catch(
-                                    err => {
-                                        throw err;
+                        .then(imageUrlBig => {
+
+
+                            var reader = new FileReader();
+                            reader.onloadend = (function() {
+                                minify(reader.result, 180, function(data){
+                                    let bytes = new Uint8Array(data.length);
+                                    for (let i = 0; i < bytes.length; i++) {
+                                        bytes[i] = data.charCodeAt(i);
                                     }
-                                )
+                                    var fileSmall = new Blob([bytes], {type : 'image/jpeg'} );
+     
+                                    const fileSmallName = guid();
+                                    addFile(fileSmall, fileSmallName)
+                                        .then((resp) => {
+                                            if (resp.state === 'success') {
+                            
+                                                getDownloadUrl(resp.metadata.fullPath)
+                                                    .then(imageUrlSmall => {
+
+                                                        const urlObj = { url: imageUrlBig, urlSmall: imageUrlSmall };
+                                                        AddThingImage(item, urlObj)
+                                                            .then(() => {
+                                                                showMessage();
+                                                                // получаем все данные с сервера
+                                                                getData(item.type)
+                                                                    .then((snapshot) => {
+                                                                        const list = sortByDateAndFilter(snapshot.val(), filter);                
+                                                                        dispatch(requestThingSuccess(list, item.type)); 
+                                                                    })
+                                                                    .catch(err => {
+                                                                        console.log(err);
+                                                                        throw err;
+                                                                    })
+                                                            }
+                                                            )
+                                                            .catch(
+                                                                err => {
+                                                                    throw err;
+                                                                }
+                                                            )
+
+                                                    })
+                                                    .catch(
+                                                        err => {
+                                                            throw err;
+                                                        }
+                                                    )
+
+                                            } else {
+                                                throw String('Не удалось передать файл!');
+                                            }
+                                        }
+                                        )
+                                        .catch(
+                                            err => {
+                                                dispatch(requestThingError(new Error(err)))
+                                            }
+                                        )
+
+                                });
+                            });
+                            reader.readAsBinaryString(fileBig);
+
                         })
                         .catch(
                             err => {

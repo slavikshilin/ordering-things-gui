@@ -3,6 +3,7 @@ import { List, Card, Upload, Icon, message, Tooltip, Modal } from 'antd';
 import ThingInfoPopover from './thingInfoPopover';
 import EditThingButton from './editThing/editThingButton';
 import Lightbox from '../lib/index';
+import { minify } from '../core/utils/minifyJpegAsync';
 
 const { Meta } = Card;
 const { confirm } = Modal;
@@ -29,6 +30,7 @@ class CardItem extends Component {
         if (result) {
             thingsActions.fetchAddImage(item, file, showMessage);
         }
+
 
         return false;
     }
@@ -61,7 +63,7 @@ class CardItem extends Component {
         const { thingAdd, item, gallery, galleryActions, thingsActions, thingAddActions } = this.props;
         const show = (item === gallery.item) && (item.urls);
 
-        const defaultUrl = (item.urls) ? Object.values(item.urls)[0].url : 'https://firebasestorage.googleapis.com/v0/b/ordering-things-api.appspot.com/o/default%2Fempty.jpg?alt=media&token=427e09b3-98ac-4967-b058-74c99a039f86';
+        const defaultUrl = (item.urls) ? Object.values(item.urls)[0].urlSmall : 'https://firebasestorage.googleapis.com/v0/b/ordering-things-api.appspot.com/o/default%2Fempty.jpg?alt=media&token=427e09b3-98ac-4967-b058-74c99a039f86';
 
         const imageUrls = (item.urls) ? Object.values(item.urls)
             .map((urlObj, i) => {
