@@ -199,7 +199,7 @@ export function fetchAddImage(item, fileBig, showMessage, filter) {
 
                             var reader = new FileReader();
                             reader.onloadend = (function() {
-                                minify(reader.result, 180, function(data){
+                                minify(reader.result, 360, function(data){
                                     let bytes = new Uint8Array(data.length);
                                     for (let i = 0; i < bytes.length; i++) {
                                         bytes[i] = data.charCodeAt(i);

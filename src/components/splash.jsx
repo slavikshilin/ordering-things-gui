@@ -1,10 +1,13 @@
 import React from 'react'
-import { Spin } from 'antd'
+import { Spin, Icon } from 'antd'
 
 const Splash = () => {
+
+    const antIcon = <Icon type="loading-3-quarters" style={{ fontSize: 60 }} spin />;
+
     return (
         <div className="splash-parent">
-            <Spin tip="Загрузка..." size="large" />
+            <Spin indicator={antIcon} size="large" />
         </div>
     )
 }

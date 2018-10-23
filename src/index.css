@@ -1,5 +1,14 @@
+
 .body-main {
-  background: #f0f2f5;
+  background: #f3e5f0;
+}
+
+.ant-layout { 
+  background: #f3e5f0; 
+}
+
+.ant-tabs { 
+  color: black;
 }
 
 .login-form {
@@ -15,7 +24,7 @@
 }
 
 .ant-layout-footer {
-  margin-top: 10%;
+  margin-top: 15%;
 }
 
 #footer {
@@ -339,4 +348,8 @@ p {
 .btn-filter {
   padding-top: 8px;
   padding-left: 8px;  
+}
+
+.ant-confirm-body .ant-confirm-content {
+  color: black;
 }
