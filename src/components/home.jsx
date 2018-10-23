@@ -16,7 +16,7 @@ class Home extends Component {
 
     constructor(props) {
         super(props);
-        props.thingsActions.fetchThings(thingTypes.BOOT);
+        props.thingsActions.fetchThings(thingTypes.CLOTHES);
     }
 
     callback(key) {
@@ -49,17 +49,6 @@ class Home extends Component {
                     <AuthHeader userInfo={getUserInfo(auth)} history={history} authActions={authActions} />
                     <div align="left">
                         <Tabs defaultActiveKey={thingType} onChange={this.callback.bind(this)}>
-                            <TabPane tab="Обувь" key={thingTypes.BOOT}>
-                                <TabContainer 
-                                    thingAdd={thingAdd}
-                                    params={bootParams}
-                                    things={things} 
-                                    gallery={gallery} 
-                                    thingsActions={thingsActions}
-                                    thingAddActions={thingAddActions}
-                                    galleryActions={galleryActions} 
-                                    tabName="Обувь" />
-                            </TabPane>
                             <TabPane tab="Одежда" key={thingTypes.CLOTHES}>
                                 <TabContainer 
                                     thingAdd={thingAdd}
@@ -70,6 +59,17 @@ class Home extends Component {
                                     thingAddActions={thingAddActions}
                                     galleryActions={galleryActions} 
                                     tabName="Одежда" />
+                            </TabPane>
+                            <TabPane tab="Обувь" key={thingTypes.BOOT}>
+                                <TabContainer 
+                                    thingAdd={thingAdd}
+                                    params={bootParams}
+                                    things={things} 
+                                    gallery={gallery} 
+                                    thingsActions={thingsActions}
+                                    thingAddActions={thingAddActions}
+                                    galleryActions={galleryActions} 
+                                    tabName="Обувь" />
                             </TabPane>
                             <TabPane tab="Сумки и рюкзаки" key={thingTypes.BAG}>
                                 <TabContainer 
