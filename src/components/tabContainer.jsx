@@ -4,7 +4,6 @@ import CardItem from './cardItem';
 import AddThingButton from './addThing/addThingButton';
 import FilterPanel from './filter/filterPanel';
 
-
 class TabContainer extends Component {
 
     render() {  
@@ -25,6 +24,7 @@ class TabContainer extends Component {
                         thingAddActions={thingAddActions} />
                 </div>
                 <List
+                    locale={{ emptyText: 'Нет данных'}}
                     grid={{ gutter: 16, xs: 1, sm: 2, md: 3, lg: 4, xl: 5, xxl: 6 }}
                     dataSource={Object.values(thingsInfo)}
                     renderItem={item => { 
