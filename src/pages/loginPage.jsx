@@ -19,7 +19,7 @@ class LoginPage extends Component {
             <Layout align="middle">
                 <Footer style={{ fontSize: "x-large" }}>
                     <AlertMessage err={auth.err} />
-                    Авторизация на сайте
+                    Авторизация
                 </Footer>
                 <Content><WrappedLogin isFetching={auth.isFetching} err={auth.err} history={history} onSubmitBtn={(login, password, history) => fetchLoginAction(login, password, history)} /></Content>
                 <Footer></Footer>
