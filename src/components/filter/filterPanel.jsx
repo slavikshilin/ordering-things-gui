@@ -30,19 +30,21 @@ class FilterPanel extends Component {
                             
                             return (
                                 <div key={i} className="thing-block">
-                                    <ThingParamLabel 
-                                        text={params[element].Text} />
-                                    <ThingFilterControl 
-                                        paramName={element}
-                                        paramType={params[element].ParamType} 
-                                        list={params[element].List} 
-                                        defaultValue={defaultValue} 
-                                        paramChange={this.applyFilter.bind(this)} 
-                                        controlWidth={180}
-                                        hasEmptyItem
-                                        onlyInput
-                                        useFilter={useFilter}
-                                    />
+                                    <div>
+                                        <ThingParamLabel 
+                                            text={params[element].Text} />
+                                        <ThingFilterControl 
+                                            paramName={element}
+                                            paramType={params[element].ParamType} 
+                                            list={params[element].List} 
+                                            defaultValue={defaultValue} 
+                                            paramChange={this.applyFilter.bind(this)} 
+                                            controlWidth={180}
+                                            hasEmptyItem
+                                            onlyInput
+                                            useFilter={useFilter}
+                                        />
+                                    </div>
                                 </div>
                             )
                         } else {

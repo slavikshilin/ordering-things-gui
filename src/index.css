@@ -309,6 +309,8 @@ p {
 
 .filter-panel {
   display: inline-block;
+  margin-left: -8px;
+  margin-right: -8px;
 } 
 
 .filter-panel .thing-block {
@@ -336,8 +338,8 @@ p {
 } 
 
 .filter-panel .thing-block {
-  padding-right: 6px;
-  padding-left: 7px;
+  padding-right: 8px;
+  padding-left: 8px;
 }
 
 .filter-panel .ant-select-auto-complete.ant-select .ant-input {
