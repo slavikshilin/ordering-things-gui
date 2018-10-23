@@ -359,3 +359,7 @@ p {
 .ant-confirm-body .ant-confirm-content {
   color: black;
 }
+
+.ant-card-hoverable:hover {
+  box-shadow: 6px 6px 8px rgba(0, 0, 0, 0.45);
+}
