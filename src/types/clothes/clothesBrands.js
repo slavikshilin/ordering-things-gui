@@ -4,6 +4,7 @@
 const clothesBrands = [
     "Baon",
     "Bershka",
+    "Emka",
     "Incity",
     "H&M",
     "Karen Millen",
