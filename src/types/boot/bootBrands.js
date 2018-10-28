@@ -7,6 +7,7 @@
     "Basarab",
     "Carlo Pazolini",
     "Centro",
+    "Corso Como",   
     "Ecco",
     "Hogl",
     "Lucca",
