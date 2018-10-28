@@ -3,7 +3,10 @@
  * @enum {string}
  */
 const colorType = {
-    
+	
+	/** Бежевый */
+	BIEGE: "Бежевый",
+	
     /** Красный */
 	RED: "Красный",
 
