@@ -11,6 +11,8 @@
     "Ecco",
     "Hogl",
     "Lucca",
+    "Marko",
+    "Mascotte",
     "Massimo Dutti",
     "Next",
     "Puma",
