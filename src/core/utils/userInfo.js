@@ -1,3 +1,5 @@
+import { getIsLogged } from '../api/apiMethods';
+
 export function getUserInfo(auth) {
     if (auth.userInfo) {
         return auth.userInfo
@@ -9,7 +11,7 @@ export function getUserInfo(auth) {
 }
 
 export function isLoggedIn() {
-    return localStorage.getItem('cks_token') !== null
+    return (localStorage.getItem('cks_token') !== null) && (getIsLogged());
 }
 
 export function clearLocalStorage() {

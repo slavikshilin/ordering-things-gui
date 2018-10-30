@@ -22,6 +22,20 @@ export function getLogout() {
 }
 
 /**
+ * Проверка авторизованности пользователя
+ * @returns {boolean}
+ */
+export function getIsLogged() {
+	var user = firebase.auth().currentUser;
+	if (user) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
+/**
  * Добавление файла в хранилище
  * @param {File} file Файл  
  * @param {File} fileName Имя файла   
