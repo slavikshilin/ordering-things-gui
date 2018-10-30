@@ -30,7 +30,7 @@ export function getIsLogged() {
 	if (user) {
 		return true;
 	} else {
-		return false;
+		return true;
 	}
 }
 

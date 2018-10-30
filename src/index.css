@@ -363,3 +363,7 @@ p {
 .ant-card-hoverable:hover {
   box-shadow: 6px 6px 8px rgba(0, 0, 0, 0.45);
 }
+
+.ant-tabs-nav-container {
+  font-size: 20px;
+}
