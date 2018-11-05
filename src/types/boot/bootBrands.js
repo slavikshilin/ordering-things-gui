@@ -18,6 +18,7 @@
     "Puma",
     "Ralf Ringer",
     "Respect",
+    "Ronzo",
     "Tamaris",
     "Tervolina",
     "Torrini",

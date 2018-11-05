@@ -3,10 +3,13 @@
  * @enum {string}
  */
 const colorType = {
-	
+
 	/** Бежевый */
 	BIEGE: "Бежевый",
-	
+
+	/** Бордовый */
+    MAROON: "Бордовый",  	
+
     /** Красный */
 	RED: "Красный",
 
@@ -38,7 +41,10 @@ const colorType = {
     VIOLET: "Фиолетовый",  
   
 	/** Розовый */
-    PINK: "Розовый",        
+	PINK: "Розовый",    
+	
+	/** Циан */
+    CYANOGEN: "Циан",  
 };
 
 export default colorType;   
