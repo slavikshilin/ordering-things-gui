@@ -24,6 +24,7 @@
     "Torrini",
     "Zenden",
     "Zara",
+    "Uterque",
     "Эконика",
 ];
 
