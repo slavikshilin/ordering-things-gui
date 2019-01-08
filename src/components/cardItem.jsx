@@ -38,6 +38,11 @@ class CardItem extends Component {
         galleryActions.toggleLightbox(item);
     }
 
+    imgLoaded(img){
+        //var imgWrapper = img.parentNode;
+        //imgWrapper.className += imgWrapper.className ? ' loaded' : 'loaded';
+    }      
+
     showDeleteConfirm() {
         const { item, thingsActions } = this.props;
         confirm({
@@ -100,7 +105,7 @@ class CardItem extends Component {
                                 </Tooltip>
                             ]}
                         hoverable
-                        cover={<img alt="Фото" src={defaultUrl} onClick={this.showSlider.bind(this)} />}>
+                        cover={<img alt="Фото" src={defaultUrl} onClick={this.showSlider.bind(this)} onload={this.imgLoaded(this)} />}>
                         <Meta
                             title={item.title} />
                     </Card>

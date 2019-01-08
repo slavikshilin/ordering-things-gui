@@ -6,9 +6,12 @@ const bootType = {
     
     /** Туфли */
     SHOES: "Туфли",
+
+    /** Босоножки */
+    SANDALS: "Босоножки",
     
     /** Балетки */
-	BALLET_SHOES : "Балетки",    
+	BALLET_SHOES: "Балетки",    
 	
     /** Сапоги */
 	HIGH_BOOTS: "Сапоги",
