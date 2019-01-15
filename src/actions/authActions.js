@@ -50,59 +50,51 @@ function requestLogoutError(err) {
 }
 
 export function fetchLogout(history) {
-    return (dispatch) => {
+    return async (dispatch) => {
 
         clearLocalStorage()
         dispatch(requestLogout())
 
-        getLogout()
-            .then(() => {
-                dispatch(requestLogoutSuccess());
-                history.push("/login")
-            }
-            )
-            .catch(
-                err => {
-                    dispatch(requestLogoutError(err))
-                }
-            )
+        try {
+            await getLogout();
+            dispatch(requestLogoutSuccess());
+            history.push("/login")
+        } catch(err) {
+            dispatch(requestLogoutError(err));
+        }
+
     }
 }
 
 /*eslint-disable */
 export function fetchLogin(login, password, history) {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(requestLogin())
 
-        getLogin(login, password)
-            .then((userInfo) => {
-                console.log(JSON.stringify(userInfo))
+        try {
+            let userInfo = await getLogin(login, password);
+            console.log(JSON.stringify(userInfo));
 
-                /*
-                var user = firebase.auth().currentUser;
-                user.updateProfile({
-                    displayName: "Вера Шилина",
-                    photoURL: "https://firebasestorage.googleapis.com/v0/b/ordering-things-api.appspot.com/o/users%2Fvera.jpg?alt=media&token=471839d5-48b6-4725-8cd7-cb11d5bad0aa"
-                }).then(function () {
-                    console.log('update user success!');
-                }).catch(function (error) {
-                    console.log('update user error: ' + error);
-                });
-                */
+            /*
+            var user = firebase.auth().currentUser;
+            user.updateProfile({
+                displayName: "Вера Шилина",
+                photoURL: "https://firebasestorage.googleapis.com/v0/b/ordering-things-api.appspot.com/o/users%2Fvera.jpg?alt=media&token=471839d5-48b6-4725-8cd7-cb11d5bad0aa"
+            }).then(function () {
+                console.log('update user success!');
+            }).catch(function (error) {
+                console.log('update user error: ' + error);
+            });
+            */            
+           dispatch(requestLoginSuccess(userInfo));
+           //сохранение токена в localStorage
+           setLocalStorage(userInfo);
+           history.push("/");
+        } catch(err) {
+            localStorage.clear();
+            dispatch(requestLoginError(err));
+        }        
 
-
-                dispatch(requestLoginSuccess(userInfo))
-                //сохранение токена в localStorage
-                setLocalStorage(userInfo)
-                history.push("/")
-            }
-            )
-            .catch(
-                err => {
-                    localStorage.clear()
-                    dispatch(requestLoginError(err))
-                }
-            )
     }
 }
 /*eslint-enable */

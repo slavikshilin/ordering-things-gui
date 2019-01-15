@@ -104,85 +104,74 @@ export function filterThingsApply(things, filter, filterAdd) {
 
 export function filterThingsClear() {
     return (dispatch) => {
-        dispatch(clearFilter())
+        dispatch(clearFilter());
     }    
 }
 
 export function fetchThings(thingType, filter) {
-    return (dispatch) => {
+    return async (dispatch) => {
 
         dispatch(requestThing())
 
-        getData(thingType)
-            .then((snapshot) => {
-                const list = sortByDateAndFilter(snapshot.val(), filter);                
-                dispatch(requestThingSuccess(list, thingType)); 
-            })
-            .catch(err => {
-                console.log(err);
-                dispatch(requestThingError(new Error(err)))
-            })
+        try {
+            let snapshot = await getData(thingType);
+            const list = sortByDateAndFilter(snapshot.val(), filter);                
+            dispatch(requestThingSuccess(list, thingType)); 
+        } catch(err) {
+            console.log(err);
+            dispatch(requestThingError(new Error(err)));
+        }        
+
     }
 }
 
 export function fetchAddThing(thing, filter) {
-    return (dispatch) => {
+    return async (dispatch) => {
 
         dispatch(requestThing())
 
-        addThing(thing)
-            .then(() => {
+        try {
+            await addThing(thing);
+            // получаем все данные с сервера
+            let snapshot = await getData(thing.type);
+            const list = sortByDateAndFilter(snapshot.val(), filter);                
+            dispatch(requestThingSuccess(list, thing.type)); 
+        } catch(err) {
+            console.log(err);
+            dispatch(requestThingError(err));
+        }        
 
-                // получаем все данные с сервера
-                getData(thing.type)
-                    .then((snapshot) => {
-                        const list = sortByDateAndFilter(snapshot.val(), filter);                
-                        dispatch(requestThingSuccess(list, thing.type)); 
-                    })
-                    .catch(err => {
-                        console.log(err);
-                        throw err;
-                    })
-
-            }
-            )
-            .catch(
-                err => {
-                    dispatch(requestThingError(err))
-                }
-            )
     }
 }
 
 export function fetchEditThing(thing, filter) {
-    return (dispatch) => {
+    return async (dispatch) => {
 
         dispatch(requestThing())
 
-        editThing(thing)
-            .then(() => {
+        try {
+            await editThing(thing);
+            let snapshot = await getData(thing.type);
+            const list = sortByDateAndFilter(snapshot.val(), filter);                
+            dispatch(requestThingSuccess(list, thing.type)); 
+        } catch(err) {
+            console.log(err);
+            dispatch(requestThingError(err))
+        }
 
-                // получаем все данные с сервера
-                getData(thing.type)
-                    .then((snapshot) => {
-                        const list = sortByDateAndFilter(snapshot.val(), filter);                
-                        dispatch(requestThingSuccess(list, thing.type)); 
-                    })
-                    .catch(err => {
-                        console.log(err);
-                        throw err;
-                    })
-
-            }
-            )
-            .catch(
-                err => {
-                    dispatch(requestThingError(err))
-                }
-            )
     }
 }
 
+
+/**
+ * Добавление фото вещи на сервер
+ *
+ * @export
+ * @param {Object} item
+ * @param {Object} fileBig
+ * @param {Object} showMessage
+ * @param {Object} filter
+ */
 export function fetchAddImage(item, fileBig, showMessage, filter) {
     return (dispatch) => {
 
@@ -279,30 +268,27 @@ export function fetchAddImage(item, fileBig, showMessage, filter) {
     }
 }
 
-
+/**
+ * Удаление вещи
+ *
+ * @export
+ * @param {Object} thing Удаляемая вещь
+ * @param {*} filter Фильтр
+ */
 export function fetchRemove(thing, filter) {
-    return (dispatch) => {
+    return async (dispatch) => {
 
         dispatch(requestThing())
 
-        removeThing(thing)
-            .then(() => {
-                // получаем все данные с сервера
-                getData(thing.type)
-                    .then((snapshot) => {
-                        const list = sortByDateAndFilter(snapshot.val(), filter);                
-                        dispatch(requestThingSuccess(list, thing.type)); 
-                    })
-                    .catch(err => {
-                        console.log(err);
-                        throw err;
-                    })
-            }
-            )
-            .catch(
-                err => {
-                    dispatch(requestThingError(err))
-                }
-            )
+        try {
+            await removeThing(thing);
+            let snapshot = await getData(thing.type);
+            const list = sortByDateAndFilter(snapshot.val(), filter);                
+            dispatch(requestThingSuccess(list, thing.type));             
+        } catch(err) {
+            console.log(err);
+            dispatch(requestThingError(err))
+        }
+
     }
 }
