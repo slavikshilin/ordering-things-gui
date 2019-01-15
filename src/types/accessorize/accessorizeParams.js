@@ -7,10 +7,10 @@ import colorType from '../common/colorType';
  * Параметры аксессуаров
  * @enum {string}
  */
-const bagParams = {
+const accessorizeParams = {
     
     /** Тип */
-    type: { Text: "Тип", ParamType: paramControlType.NONE, Default: thingType.BAG },
+    type: { Text: "Тип", ParamType: paramControlType.NONE, Default: thingType.ACCESSORIZE },
     
     /** Название */
     title: { Text: "Название", ParamType: paramControlType.INPUT, Default: '' }, 
@@ -29,4 +29,4 @@ const bagParams = {
      
 };
 
-export default bagParams;   
+export default accessorizeParams;   
