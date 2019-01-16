@@ -10,6 +10,12 @@ export const REQUEST_THING_FAILED = 'REQUEST_THING_FAILED';
 export const CHANGE_FILTER = 'CHANGE_FILTER';
 export const CLEAR_FILTER = 'CLEAR_FILTER';
 
+
+/**
+ * Очистка (сброс) фильтра в редюсере
+ *
+ * @return
+ */
 function clearFilter() {
     return {
         type: CLEAR_FILTER
@@ -52,7 +58,7 @@ function sortByDateAndFilter(list, filter) {
         sortesList = Object.values(list);
 
         if (sortesList.length > 1) {
-            sortesList.sort(function(a, b) {
+            sortesList.sort(function (a, b) {
                 return b.createDate - a.createDate;
             });
         }
@@ -63,12 +69,12 @@ function sortByDateAndFilter(list, filter) {
 
             for (let key in filter) {
 
-                filteredList = filteredList.filter(item => { 
+                filteredList = filteredList.filter(item => {
                     const typeKey = typeof item[key];
                     if (typeKey === 'string') {
-                        return item[key].toUpperCase().startsWith(filter[key].toUpperCase()); 
+                        return item[key].toUpperCase().startsWith(filter[key].toUpperCase());
                     } else if ((typeKey === 'boolean') || (typeKey === 'number')) {
-                        return (item[key] === filter[key]); 
+                        return (item[key] === filter[key]);
                     } else {
                         return false;
                     }
@@ -85,27 +91,26 @@ export function filterThingsApply(things, filter, filterAdd) {
     return (dispatch) => {
 
         let newFilter = {};
-        
+
         for (let key in filter) {
             if (key !== filterAdd.paramName) {
                 newFilter[key] = filter[key];
             }
         }
 
-        if ((filterAdd.paramValue !== '') && (filterAdd.paramValue !== '-'))
-        {
+        if ((filterAdd.paramValue !== '') && (filterAdd.paramValue !== '-')) {
             newFilter[filterAdd.paramName] = filterAdd.paramValue;
         }
 
-        const filteredThings = sortByDateAndFilter(things, newFilter); 
+        const filteredThings = sortByDateAndFilter(things, newFilter);
         dispatch(changeFilter(filteredThings, newFilter));
-    }    
+    }
 }
 
 export function filterThingsClear() {
     return (dispatch) => {
         dispatch(clearFilter());
-    }    
+    }
 }
 
 export function fetchThings(thingType, filter) {
@@ -115,12 +120,12 @@ export function fetchThings(thingType, filter) {
 
         try {
             let snapshot = await getData(thingType);
-            const list = sortByDateAndFilter(snapshot.val(), filter);                
-            dispatch(requestThingSuccess(list, thingType)); 
-        } catch(err) {
+            const list = sortByDateAndFilter(snapshot.val(), filter);
+            dispatch(requestThingSuccess(list, thingType));
+        } catch (err) {
             console.log(err);
             dispatch(requestThingError(new Error(err)));
-        }        
+        }
 
     }
 }
@@ -134,16 +139,25 @@ export function fetchAddThing(thing, filter) {
             await addThing(thing);
             // получаем все данные с сервера
             let snapshot = await getData(thing.type);
-            const list = sortByDateAndFilter(snapshot.val(), filter);                
-            dispatch(requestThingSuccess(list, thing.type)); 
-        } catch(err) {
+            const list = sortByDateAndFilter(snapshot.val(), filter);
+            dispatch(requestThingSuccess(list, thing.type));
+        } catch (err) {
             console.log(err);
             dispatch(requestThingError(err));
-        }        
+        }
 
     }
 }
 
+
+/**
+ * Редактирование описания вещи на сервере
+ *
+ * @export
+ * @param {Object} thing 
+ * @param {Object} filter
+ * @returns
+ */
 export function fetchEditThing(thing, filter) {
     return async (dispatch) => {
 
@@ -152,9 +166,9 @@ export function fetchEditThing(thing, filter) {
         try {
             await editThing(thing);
             let snapshot = await getData(thing.type);
-            const list = sortByDateAndFilter(snapshot.val(), filter);                
-            dispatch(requestThingSuccess(list, thing.type)); 
-        } catch(err) {
+            const list = sortByDateAndFilter(snapshot.val(), filter);
+            dispatch(requestThingSuccess(list, thing.type));
+        } catch (err) {
             console.log(err);
             dispatch(requestThingError(err))
         }
@@ -167,104 +181,53 @@ export function fetchEditThing(thing, filter) {
  * Добавление фото вещи на сервер
  *
  * @export
- * @param {Object} item
- * @param {Object} fileBig
- * @param {Object} showMessage
- * @param {Object} filter
+ * @param {Object} item 
+ * @param {Object} fileBig Оригинальный (полноразмерный) jpg-файл
+ * @param {function} showMessage функция обратного вызова для показа уведомления 
+ * @param {Object} filter Фильтр
  */
 export function fetchAddImage(item, fileBig, showMessage, filter) {
-    return (dispatch) => {
+    return async (dispatch) => {
 
         dispatch(requestThing())
 
         const fileBigName = guid();
-        addFile(fileBig, fileBigName)
-            .then((resp) => {
-                if (resp.state === 'success') {
-
-                    getDownloadUrl(resp.metadata.fullPath)
-                        .then(imageUrlBig => {
-
-
-                            var reader = new FileReader();
-                            reader.onloadend = (function() {
-                                minify(reader.result, 360, function(data){
-                                    let bytes = new Uint8Array(data.length);
-                                    for (let i = 0; i < bytes.length; i++) {
-                                        bytes[i] = data.charCodeAt(i);
-                                    }
-                                    var fileSmall = new Blob([bytes], {type : 'image/jpeg'} );
-     
-                                    const fileSmallName = guid();
-                                    addFile(fileSmall, fileSmallName)
-                                        .then((resp) => {
-                                            if (resp.state === 'success') {
-                            
-                                                getDownloadUrl(resp.metadata.fullPath)
-                                                    .then(imageUrlSmall => {
-
-                                                        const urlObj = { url: imageUrlBig, urlSmall: imageUrlSmall };
-                                                        AddThingImage(item, urlObj)
-                                                            .then(() => {
-                                                                showMessage();
-                                                                // получаем все данные с сервера
-                                                                getData(item.type)
-                                                                    .then((snapshot) => {
-                                                                        const list = sortByDateAndFilter(snapshot.val(), filter);                
-                                                                        dispatch(requestThingSuccess(list, item.type)); 
-                                                                    })
-                                                                    .catch(err => {
-                                                                        console.log(err);
-                                                                        throw err;
-                                                                    })
-                                                            }
-                                                            )
-                                                            .catch(
-                                                                err => {
-                                                                    throw err;
-                                                                }
-                                                            )
-
-                                                    })
-                                                    .catch(
-                                                        err => {
-                                                            throw err;
-                                                        }
-                                                    )
-
-                                            } else {
-                                                throw String('Не удалось передать файл!');
-                                            }
-                                        }
-                                        )
-                                        .catch(
-                                            err => {
-                                                dispatch(requestThingError(new Error(err)))
-                                            }
-                                        )
-
-                                });
-                            });
-                            reader.readAsBinaryString(fileBig);
-
-                        })
-                        .catch(
-                            err => {
-                                throw err;
-                            }
-                        )
-
-                } else {
-                    throw String('Не удалось передать файл!');
-                }
+        try {
+            let resp = await addFile(fileBig, fileBigName)
+            if (resp.state === 'success') {
+                let imageUrlBig = await getDownloadUrl(resp.metadata.fullPath);
+                var reader = new FileReader();
+                reader.onloadend = (function () {
+                    minify(reader.result, 360, async function (data) {
+                        let bytes = new Uint8Array(data.length);
+                        for (let i = 0; i < bytes.length; i++) {
+                            bytes[i] = data.charCodeAt(i);
+                        }
+                        var fileSmall = new Blob([bytes], { type: 'image/jpeg' });
+                        const fileSmallName = guid();
+                        let resp = await addFile(fileSmall, fileSmallName);
+                        if (resp.state === 'success') {
+                            let imageUrlSmall = await getDownloadUrl(resp.metadata.fullPath);
+                            const urlObj = { url: imageUrlBig, urlSmall: imageUrlSmall };
+                            await AddThingImage(item, urlObj);
+                            showMessage();
+                            // получаем все данные с сервера
+                            let snapshot = await getData(item.type);
+                            const list = sortByDateAndFilter(snapshot.val(), filter);
+                            dispatch(requestThingSuccess(list, item.type));
+                        } else {
+                            throw String('Не удалось передать файл!');
+                        }
+                    });
+                });
+                reader.readAsBinaryString(fileBig);
+            } else {
+                throw String('Не удалось передать файл!');
             }
-            )
-            .catch(
-                err => {
-                    dispatch(requestThingError(new Error(err)))
-                }
-            )
-
+        } catch (err) {
+            console.log(err);
+            dispatch(requestThingError(new Error(err)))
+        }
     }
 }
 
@@ -283,9 +246,9 @@ export function fetchRemove(thing, filter) {
         try {
             await removeThing(thing);
             let snapshot = await getData(thing.type);
-            const list = sortByDateAndFilter(snapshot.val(), filter);                
-            dispatch(requestThingSuccess(list, thing.type));             
-        } catch(err) {
+            const list = sortByDateAndFilter(snapshot.val(), filter);
+            dispatch(requestThingSuccess(list, thing.type));
+        } catch (err) {
             console.log(err);
             dispatch(requestThingError(err))
         }

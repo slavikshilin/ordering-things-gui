@@ -105,7 +105,7 @@ class CardItem extends Component {
                                 </Tooltip>
                             ]}
                         hoverable
-                        cover={<img alt="Фото" src={defaultUrl} onClick={this.showSlider.bind(this)} onload={this.imgLoaded(this)} />}>
+                        cover={<img alt="Фото" src={defaultUrl} onClick={this.showSlider.bind(this)} onLoad={this.imgLoaded(this)} />}>
                         <Meta
                             title={item.title} />
                     </Card>
