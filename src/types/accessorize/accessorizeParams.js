@@ -5,9 +5,10 @@ import colorType from '../common/colorType';
  
  /**
  * Параметры аксессуаров
+ * 
  * @enum {string}
  */
-const accessorizeParams = {
+ const accessorizeParams = {
     
     /** Тип */
     type: { Text: "Тип", ParamType: paramControlType.NONE, Default: thingType.ACCESSORIZE },

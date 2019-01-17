@@ -149,11 +149,9 @@ export function fetchAddThing(thing, filter) {
     }
 }
 
-
 /**
  * Редактирование описания вещи на сервере
  *
- * @export
  * @param {Object} thing 
  * @param {Object} filter
  * @returns
@@ -176,11 +174,9 @@ export function fetchEditThing(thing, filter) {
     }
 }
 
-
 /**
  * Добавление фото вещи на сервер
  *
- * @export
  * @param {Object} item 
  * @param {Object} fileBig Оригинальный (полноразмерный) jpg-файл
  * @param {function} showMessage функция обратного вызова для показа уведомления 
@@ -234,7 +230,6 @@ export function fetchAddImage(item, fileBig, showMessage, filter) {
 /**
  * Удаление вещи
  *
- * @export
  * @param {Object} thing Удаляемая вещь
  * @param {*} filter Фильтр
  */

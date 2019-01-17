@@ -4,6 +4,13 @@ function s4() {
         .substring(1);
 }
 
+
+/**
+ * Генерация Guid в виде строки
+ *
+ * @export
+ * @returns {string} Guid в виде строки
+ */
 export default function guid() {
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
         s4() + '-' + s4() + s4() + s4();

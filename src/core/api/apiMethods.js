@@ -5,6 +5,7 @@ firebase.initializeApp(FirebaseConfig);
 
 /**
  * Авторизация пользователя
+ * 
  * @param {string} user Логин пользователя в формате email 
  * @param {string} password Пароль пользователя
  * @returns {Promise<Array<Object>>}
@@ -15,6 +16,7 @@ export function getLogin(user, password) {
 
 /**
  * Выход авторизованного пользователя
+ * 
  * @returns {Promise<Object>}
  */
 export function getLogout() {
@@ -23,6 +25,7 @@ export function getLogout() {
 
 /**
  * Проверка авторизованности пользователя
+ * 
  * @returns {boolean}
  */
 export function getIsLogged() {
@@ -34,9 +37,9 @@ export function getIsLogged() {
 	}
 }
 
-
 /**
  * Добавление файла в хранилище
+ * 
  * @param {File} file Файл  
  * @param {File} fileName Имя файла   
  * @returns {Promise<Object>}
@@ -49,6 +52,7 @@ export function addFile(file, fileName) {
 
 /**
  * Удаление файла в хранилище
+ * 
  * @param {File} fileName Имя файла   
  * @returns {Promise<Object>}
  */
@@ -60,6 +64,7 @@ export function removeFile(fileName) {
 
 /**
  * Получение URL для скачивания файла
+ * 
  * @param {File} path Путь в хранилище   
  * @returns {Promise<Object>}
  */
@@ -70,6 +75,7 @@ export function getDownloadUrl(path) {
 
 /**
  * Получение списка вещей
+ * 
  * @param {Object} typeThing фильтрация по типу т.к. firebase не подддерживает фильтрацию по нескольким параметрам  
  * @returns {Promise<Object>}
  */
@@ -82,6 +88,7 @@ export function getData(typeThing) {
 
 /**
  * Добавление новой вещи в список
+ * 
  * @param {Object} thing Объект каталога   
  * @returns {Promise<Object>}
  */
@@ -96,6 +103,7 @@ export function addThing(thing) {
 
 /**
  * Добавление новой вещи в список
+ * 
  * @param {Object} thing Объект каталога   
  * @returns {Promise<Object>}
  */
@@ -107,6 +115,7 @@ export function editThing(thing) {
 
 /**
  * Удаление вещи из списка
+ * 
  * @param {Object} thing Объект каталога   
  * @returns {Promise<Object>}
  */
@@ -118,6 +127,7 @@ export function removeThing(thing) {
 
 /**
  * Добавление новой вещи в список
+ * 
  * @param {Object} thing Объект каталога   
  * @returns {Promise<Object>}
  */
