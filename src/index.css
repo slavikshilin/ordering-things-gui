@@ -367,3 +367,10 @@ p {
 .ant-tabs-nav-container {
   font-size: 20px;
 }
+
+.btn-add-block {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;  
+  align-items: center;
+}

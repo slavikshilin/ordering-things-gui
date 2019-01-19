@@ -15,13 +15,16 @@ class TabContainer extends Component {
             <div>
                 <div>
                     <FilterPanel things={this.props.things} params={params} thingsActions={thingsActions} />
-                    <AddThingButton 
-                        thingAdd={thingAdd} 
-                        params={params} 
-                        thingsInfo={thingsInfo} 
-                        gallery={gallery} 
-                        thingsActions={thingsActions} 
-                        thingAddActions={thingAddActions} />
+                    <div className="btn-add-block">
+                        <div>Количество: {thingsInfo.length}</div>
+                        <AddThingButton 
+                            thingAdd={thingAdd} 
+                            params={params} 
+                            thingsInfo={thingsInfo} 
+                            gallery={gallery} 
+                            thingsActions={thingsActions} 
+                            thingAddActions={thingAddActions} />
+                        </div>
                 </div>
                 <List
                     locale={{ emptyText: 'Нет данных'}}
