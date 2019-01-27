@@ -123,8 +123,8 @@ export function fetchThings(thingType, filter) {
             const list = sortByDateAndFilter(snapshot.val(), filter);
             dispatch(requestThingSuccess(list, thingType));
         } catch (err) {
-            console.log(err);
-            dispatch(requestThingError(new Error(err)));
+            console.log(err.message);
+            dispatch(requestThingError(new Error(err.message)));
         }
 
     }

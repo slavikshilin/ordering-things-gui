@@ -7,7 +7,7 @@ const Option = Select.Option;
 const { TextArea } = Input;
 
 const ThingFilterControl = props => {
-    const { paramName, paramType, list, defaultValue, paramChange, controlWidth, hasEmptyItem, onlyInput, useFilter } = props;
+    const { paramName, paramType, list, defaultValue, paramChange, hasEmptyItem, onlyInput, useFilter } = props;
     
     const DEFAULT_EMPTY = '-';
     let listLocal = [];
@@ -27,9 +27,9 @@ const ThingFilterControl = props => {
     if (paramType === paramControlType.SELECT) {
         return (
             <Select 
+                className="filter-control"
                 defaultValue={defaultValueLocal}
                 value={defaultValueLocal} 
-                style={{ width: controlWidth }} 
                 onChange={value => paramChange({ paramName: paramName, paramValue: value })} >
                 
                 {listLocal.map((paramItem, i) =>
@@ -39,18 +39,18 @@ const ThingFilterControl = props => {
         )
     } else if (paramTypeLocal === paramControlType.INPUT) {
         return <Input 
+                    className="filter-control"
                     defaultValue={defaultValue}
                     value={defaultValue}
                     maxLength="50" 
-                    style={{ width: controlWidth }} 
                     onChange={(e) => paramChange({ paramName: paramName, paramValue: e.target.value })} />
     } else if (paramTypeLocal === paramControlType.TEXT_AREA) {
         return <TextArea 
+                    className="filter-control"
                     defaultValue={defaultValue}
                     value={defaultValue}
                     maxLength="250" 
                     autosize={{ minRows: 2, maxRows: 5 }} 
-                    style={{ width: controlWidth }}
                     onChange={(e) => paramChange({ paramName: paramName, paramValue: e.target.value })}  />
     } else if (paramType === paramControlType.AUTO_COMPLETE) {
         
@@ -59,11 +59,11 @@ const ThingFilterControl = props => {
         }) : list;
 
         return <AutoComplete 
+                    className="filter-control"
                     dataSource={filteredList}
                     value={defaultValue}
                     defaultValue={defaultValue}
                     maxLength="250" 
-                    style={{ width: controlWidth }}
                     onChange={(value) => paramChange({ paramName: paramName, paramValue: value })}  />
     } else {  
         return null

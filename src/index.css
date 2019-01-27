@@ -43,8 +43,7 @@
 }
 
 .main-layout {
-  max-width: 1200px;
-  min-width: 600px;
+  min-width: 1200px;
   padding-top: 20px;
   padding-right: 20px;
   padding-bottom: 50px;
@@ -194,12 +193,12 @@
   margin-left: 0;
 }
 
-.ant-confirm-btns {
+.ant-modal-confirm .ant-modal-confirm-btns {
   display: flex;
   flex-direction: row-reverse;  
 }
 
-.ant-confirm-btns .ant-btn {
+.ant-modal-confirm .ant-modal-confirm-btns button {
   margin-left: 8px;
 }
 
@@ -236,13 +235,17 @@
   background-color: #e8e8e8;
 }
 
-.ant-confirm-body .anticon {
+.ant-modal-confirm-body .anticon {
   display: none;
 }
 
 .ant-select-arrow > .anticon {
   display: block;
   color: #bfbfbf; 
+}
+
+.ant-modal-confirm-body .ant-modal-confirm-content {
+  margin-left: 0;  
 }
 
 /* you can make up upload button and sample style by using stylesheets */
@@ -271,6 +274,7 @@
 
 .thing-block {
   padding-top: 5px;
+  color: black;
 }
 
 .splash-parent {
@@ -307,27 +311,15 @@ p {
   color: black;
 }
 
-.filter-panel {
-  display: inline-block;
-  margin-left: -8px;
-  margin-right: -8px;
-} 
-
-.filter-panel .thing-block {
-  display: inline-block;
-} 
-
 .filter-panel .ant-input {
-  width: 150px;
   font-size: 12px;
   height: 20px;
 }
 
 .filter-panel .ant-select {
-  width: 150px;
   font-size: 12px;
   height: 20px;
-}
+} 
 
 .filter-panel .ant-select-selection--single {
   height: 20px;  
@@ -336,11 +328,6 @@ p {
 .filter-panel .ant-select-selection__rendered {
   line-height: 18px;
 } 
-
-.filter-panel .thing-block {
-  padding-right: 8px;
-  padding-left: 8px;
-}
 
 .filter-panel .ant-select-auto-complete.ant-select .ant-input {
   width: 100%;
@@ -354,6 +341,10 @@ p {
 .btn-filter {
   padding-top: 8px;
   padding-left: 8px;  
+}
+
+.filter-control {
+  width: -webkit-fill-available;
 }
 
 .ant-confirm-body .ant-confirm-content {

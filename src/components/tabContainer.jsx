@@ -1,20 +1,44 @@
 import React, { Component } from 'react';
-import { List } from 'antd';
+import { List, Button } from 'antd';
 import CardItem from './cardItem';
 import AddThingButton from './addThing/addThingButton';
-import FilterPanel from './filter/filterPanel';
+//import FilterPanel from './filter/filterPanel';
+import FilterPanelElement from './filter/filterPanelElement';
 
+/**
+ * Контейнер для вкладки. Содержит в себе панель фильтров, кнопку добавления новой вещи, а также сетку с карточками вещей
+ *
+ * @class TabContainer
+ * @extends {Component} Базовый класс компонентов React
+ */
 class TabContainer extends Component {
 
     render() {  
      
         const thingsInfo = (this.props.things.thingsInfo) ? this.props.things.thingsInfo : [];
-        const { thingAdd, params, gallery, thingsActions, thingAddActions, galleryActions } = this.props; 
+        const { things, thingAdd, params, gallery, thingsActions, thingAddActions, galleryActions } = this.props; 
 
         return (
             <div>
                 <div>
-                    <FilterPanel things={this.props.things} params={params} thingsActions={thingsActions} />
+                    <div className="filter-panel">
+                        <List 
+                            grid={{ gutter: 16, xs: 1, sm: 2, md: 3, lg: 4, xl: 5, xxl: 6 }}
+                            dataSource={Object.keys(params)}
+                            renderItem={(item, index) => { 
+                                return <FilterPanelElement 
+                                            things={things} 
+                                            params={params}
+                                            element={item} 
+                                            index={index}
+                                            thingsActions={thingsActions} /> 
+                            }} 
+                        />
+                        <Button size="small" onClick={() => { thingsActions.filterThingsClear(); }}>
+                            Сбросить фильтр
+                        </Button>
+                    </div>
+                    
                     <div className="btn-add-block">
                         <div>Количество: {thingsInfo.length}</div>
                         <AddThingButton 
