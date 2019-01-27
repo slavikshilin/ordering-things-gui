@@ -193,9 +193,18 @@
   margin-left: 0;
 }
 
+.ant-confirm .ant-confirm-btns {
+  display: flex;
+  flex-direction: row-reverse;    
+}
+
 .ant-modal-confirm .ant-modal-confirm-btns {
   display: flex;
   flex-direction: row-reverse;  
+}
+
+.ant-confirm .ant-confirm-btns button {
+  margin-left: 8px;
 }
 
 .ant-modal-confirm .ant-modal-confirm-btns button {
@@ -236,6 +245,10 @@
 }
 
 .ant-modal-confirm-body .anticon {
+  display: none;
+}
+
+.ant-confirm-confirm .ant-confirm-body > .anticon {
   display: none;
 }
 
