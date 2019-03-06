@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classnames from 'classnames';
 import { List, Card, Upload, Icon, message, Tooltip, Modal } from 'antd';
 import ThingInfoPopover from './thingInfoPopover';
 import EditThingButton from './editThing/editThingButton';
@@ -39,8 +40,8 @@ class CardItem extends Component {
     }
 
     imgLoaded(img){
-        //var imgWrapper = img.parentNode;
-        //imgWrapper.className += imgWrapper.className ? ' loaded' : 'loaded';
+        var imgWrapper = img.parentNode;
+        imgWrapper.className = classnames({ loading: false });
     }      
 
     showDeleteConfirm() {
@@ -105,7 +106,7 @@ class CardItem extends Component {
                                 </Tooltip>
                             ]}
                         hoverable
-                        cover={<img alt="Фото" src={defaultUrl} onClick={this.showSlider.bind(this)} onLoad={this.imgLoaded(this)} />}>
+                        cover={<img className="loading" alt="Фото" src={defaultUrl} onClick={this.showSlider.bind(this)} onLoad={this.imgLoaded(this)} />}>
                         <Meta
                             title={item.title} />
                     </Card>

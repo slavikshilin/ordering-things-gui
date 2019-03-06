@@ -378,3 +378,7 @@ p {
   flex-wrap: nowrap;  
   align-items: center;
 }
+
+.loading {
+  background: transparent url('http://thinkfuture.com/wp-content/uploads/2013/10/loading_spinner.gif') center no-repeat;
+}
