@@ -40,8 +40,8 @@ class CardItem extends Component {
     }
 
     imgLoaded(img){
-        var imgWrapper = img.parentNode;
-        imgWrapper.className = classnames({ loading: false });
+        //var imgWrapper = img.parentNode;
+        //imgWrapper.className = classnames({ loading: false });
     }      
 
     showDeleteConfirm() {
