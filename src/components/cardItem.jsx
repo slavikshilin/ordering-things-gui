@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import classnames from 'classnames';
-import { List, Card, Upload, Icon, message, Tooltip, Modal } from 'antd';
+import { List, Card, Upload, Icon, message, Tooltip, Modal, Spin } from 'antd';
+import Img from 'react-image';
 import ThingInfoPopover from './thingInfoPopover';
 import EditThingButton from './editThing/editThingButton';
 import Lightbox from '../lib/index';
 
 const { Meta } = Card;
 const { confirm } = Modal;
+
+const antIcon = <Icon type="loading-3-quarters" style={{ fontSize: 24 }} spin />;
 
 const showMessage = () => {
     message.success('Файл успешно добавлен!');
@@ -38,11 +40,6 @@ class CardItem extends Component {
         const { item, galleryActions } = this.props;
         galleryActions.toggleLightbox(item);
     }
-
-    imgLoaded(img){
-        //var imgWrapper = img.parentNode;
-        //imgWrapper.className = classnames({ loading: false });
-    }      
 
     showDeleteConfirm() {
         const { item, thingsActions } = this.props;
@@ -106,7 +103,7 @@ class CardItem extends Component {
                                 </Tooltip>
                             ]}
                         hoverable
-                        cover={<img alt="Фото" src={defaultUrl} onClick={this.showSlider.bind(this)} onLoad={this.imgLoaded(this)} />}>
+                        cover={<Img alt="Фото" src={defaultUrl} loader={<Spin indicator={antIcon} />} onClick={this.showSlider.bind(this)} />}>
                         <Meta
                             title={item.title} />
                     </Card>
