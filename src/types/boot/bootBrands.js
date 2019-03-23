@@ -9,6 +9,7 @@
     "Centro",
     "Corso Como",   
     "Ecco",
+    "Geox",
     "Hogl",
     "Lucca",
     "Marko",
