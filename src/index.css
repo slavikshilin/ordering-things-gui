@@ -53,6 +53,8 @@
 .auth-header {
   text-align: right;  
   margin: 5px;  
+  margin-left: 16px;
+  margin-right: 16px;    
 }
 
 .main-footer {
@@ -376,8 +378,25 @@ p {
   flex-direction: row;
   flex-wrap: nowrap;  
   align-items: center;
+  margin-left: 16px;
+  margin-right: 16px;   
 }
 
 .loading {
   background: transparent url('http://thinkfuture.com/wp-content/uploads/2013/10/loading_spinner.gif') center no-repeat;
+}
+
+.ant-spin-container {
+  margin-left: 16px;
+  margin-right: 16px;  
+}
+
+.head-panel {
+  margin-left: 16px;
+  margin-right: 16px;    
+}
+
+#button-filter {
+  margin-left: 16px;
+  margin-right: 16px;     
 }

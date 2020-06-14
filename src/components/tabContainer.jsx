@@ -34,7 +34,7 @@ class TabContainer extends Component {
                                             thingsActions={thingsActions} /> 
                             }} 
                         />
-                        <Button size="small" onClick={() => { thingsActions.filterThingsClear(); }}>
+                        <Button id="button-filter" size="small" onClick={() => { thingsActions.filterThingsClear(); }}>
                             Сбросить фильтр
                         </Button>
                     </div>
