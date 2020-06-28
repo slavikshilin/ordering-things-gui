@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from "redux"; 
+import { connect } from 'react-redux'; 
 import PropTypes from 'prop-types';
 import { List } from 'antd';
 import ThingFilterControl from './thingFilterContol';
 import ThingParamLabel from '../addThing/thingParamLabel';
 import paramControlType from '../../types/paramControlType';
+import * as thingsActions from '../../actions/thingsActions';  
 
 class FilterPanelElement extends Component {
 
@@ -55,4 +58,19 @@ FilterPanelElement.propTypes = {
     enabled: PropTypes.bool
 }
 
-export default FilterPanelElement  
+const mapStateToProps = store => {
+    return {
+        things: store.things
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        thingsActions: bindActionCreators(thingsActions, dispatch)
+	}; 
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(FilterPanelElement)

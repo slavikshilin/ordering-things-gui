@@ -1,5 +1,8 @@
-import React from 'react'
-import { Form, Icon, Input, Button } from 'antd'
+import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { Form, Icon, Input, Button } from 'antd';
+import { fetchLogin } from '../actions/authActions';
 
 const FormItem = Form.Item
 
@@ -8,17 +11,19 @@ function hasErrors(fieldsError) {
 }
 
 class Login extends React.Component {
+
     componentDidMount() {
         // To disabled submit button at the beginning.
-        this.props.form.validateFields()
+        this.props.form.validateFields();
     }
 
     handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
+        let _self = this;
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                const { onSubmitBtn, history } = this.props
-                onSubmitBtn(values.userName, values.password, history)
+                const { fetchLoginAction, history } = _self.props
+                fetchLoginAction(values.userName, values.password, history)
 
                 console.log('Received values of form: ', values)
             }
@@ -51,7 +56,7 @@ class Login extends React.Component {
         const userNameError = isFieldTouched('userName') && getFieldError('userName')
         const passwordError = isFieldTouched('password') && getFieldError('password')
         return (
-            <Form className="login-form" onSubmit={this.handleSubmit}>
+            <Form className="login-form" onSubmit={this.handleSubmit.bind(this)}>
                 <FormItem
                     validateStatus={userNameError ? 'error' : ''}
                     help={userNameError || ''}
@@ -94,4 +99,13 @@ class Login extends React.Component {
 
 const WrappedLogin = Form.create()(Login)
 
-export default WrappedLogin
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchLoginAction: (login, password, history) => dispatch(fetchLogin(login, password, history))
+    }
+}
+
+export default withRouter(connect(
+    null,
+    mapDispatchToProps
+)(WrappedLogin))

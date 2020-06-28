@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import { Layout } from 'antd'
 import AlertMessage from '../components/alertMessage'
 import WrappedLogin from '../components/login'
-import { fetchLogin } from '../actions/authActions'
 import { clearLocalStorage } from '../core/utils/userInfo'
 
 const { Content, Footer } = Layout
@@ -13,7 +11,7 @@ class LoginPage extends Component {
 
     render() {
         clearLocalStorage()
-        const { auth, fetchLoginAction, history } = this.props
+        const { auth } = this.props
 
         return (
             <Layout align="middle">
@@ -21,7 +19,7 @@ class LoginPage extends Component {
                     <AlertMessage err={auth.err} />
                     Авторизация
                 </Footer>
-                <Content><WrappedLogin isFetching={auth.isFetching} err={auth.err} history={history} onSubmitBtn={(login, password, history) => fetchLoginAction(login, password, history)} /></Content>
+                <Content><WrappedLogin isFetching={auth.isFetching} /></Content>
                 <Footer></Footer>
             </Layout>
         )
@@ -34,13 +32,6 @@ const mapStateToProps = store => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        fetchLoginAction: (login, password, history) => dispatch(fetchLogin(login, password, history))
-    }
-}
-
-export default withRouter(connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(LoginPage))
+export default connect(
+    mapStateToProps
+)(LoginPage)

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from "redux"; 
+import { connect } from 'react-redux'; 
 import { List, Button } from 'antd';
 import CardItem from './cardItem';
 import AddThingButton from './addThing/addThingButton';
-//import FilterPanel from './filter/filterPanel';
 import FilterPanelElement from './filter/filterPanelElement';
+import * as thingsActions from '../actions/thingsActions';  
 
 /**
  * Контейнер для вкладки. Содержит в себе панель фильтров, кнопку добавления новой вещи, а также сетку с карточками вещей
@@ -16,7 +18,7 @@ class TabContainer extends Component {
     render() {  
      
         const thingsInfo = (this.props.things.thingsInfo) ? this.props.things.thingsInfo : [];
-        const { things, thingAdd, params, gallery, thingsActions, thingAddActions, galleryActions } = this.props; 
+        const { params, thingsActions } = this.props; 
 
         return (
             <div>
@@ -27,11 +29,9 @@ class TabContainer extends Component {
                             dataSource={Object.keys(params)}
                             renderItem={(item, index) => { 
                                 return <FilterPanelElement 
-                                            things={things} 
                                             params={params}
                                             element={item} 
-                                            index={index}
-                                            thingsActions={thingsActions} /> 
+                                            index={index} /> 
                             }} 
                         />
                         <Button id="button-filter" size="small" onClick={() => { thingsActions.filterThingsClear(); }}>
@@ -41,13 +41,7 @@ class TabContainer extends Component {
                     
                     <div className="btn-add-block">
                         <div>Количество: {thingsInfo.length}</div>
-                        <AddThingButton 
-                            thingAdd={thingAdd} 
-                            params={params} 
-                            thingsInfo={thingsInfo} 
-                            gallery={gallery} 
-                            thingsActions={thingsActions} 
-                            thingAddActions={thingAddActions} />
+                            <AddThingButton params={params}  />
                         </div>
                 </div>
                 <List
@@ -55,13 +49,7 @@ class TabContainer extends Component {
                     grid={{ gutter: 16, xs: 1, sm: 2, md: 3, lg: 4, xl: 5, xxl: 6 }}
                     dataSource={Object.values(thingsInfo)}
                     renderItem={item => { 
-                        return <CardItem 
-                                    thingAdd={thingAdd}
-                                    item={item} 
-                                    gallery={gallery} 
-                                    thingsActions={thingsActions}
-                                    thingAddActions={thingAddActions} 
-                                    galleryActions={galleryActions} /> 
+                        return <CardItem item={item} /> 
                     } }
                 />
             </div>
@@ -70,4 +58,19 @@ class TabContainer extends Component {
     }
 }
 
-export default TabContainer
+const mapStateToProps = store => {
+    return {
+        things: store.things
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        thingsActions: bindActionCreators(thingsActions, dispatch)
+	}; 
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TabContainer)
