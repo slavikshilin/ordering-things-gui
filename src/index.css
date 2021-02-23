@@ -45,9 +45,9 @@
 .main-layout {
   width: -webkit-fill-available;  
   padding-top: 20px;
-  padding-right: 20px;
+  padding-right: 0;
   padding-bottom: 50px;
-  padding-left: 20px;
+  padding-left: 0;
 }
 
 .auth-header {

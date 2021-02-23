@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from "redux"; 
+import { connect } from 'react-redux'; 
 import { Icon, Modal, Tooltip } from 'antd';
-import AddThingContent from './addThingContent'
+import AddThingContent from './addThingContent';
+import * as thingAddActions from '../../actions/thingAddActions'; 
+
 const confirm = Modal.confirm;
 
 class AddThingButton extends Component {
@@ -60,4 +64,19 @@ class AddThingButton extends Component {
     }
 }
 
-export default AddThingButton  
+const mapStateToProps = store => {
+    return {
+        thingAdd: store.thingAdd
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        thingAddActions: bindActionCreators(thingAddActions, dispatch)
+	}; 
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AddThingButton)

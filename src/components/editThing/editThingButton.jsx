@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from "redux"; 
+import { connect } from 'react-redux'; 
 import { Icon, Modal, Tooltip } from 'antd';
 import EditThingContent from './editThingContent';
 import { getThingParams, getFullThingInfo } from '../../mapping/fullThingInfo';
+import * as thingsActions from '../../actions/thingsActions';  
+import * as thingAddActions from '../../actions/thingAddActions'; 
+
 const confirm = Modal.confirm;
 
 class EditThingButton extends Component {
@@ -62,4 +67,20 @@ class EditThingButton extends Component {
     }
 }
 
-export default EditThingButton  
+const mapStateToProps = store => {
+    return {
+        thingAdd: store.thingAdd
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        thingsActions: bindActionCreators(thingsActions, dispatch),
+        thingAddActions: bindActionCreators(thingAddActions, dispatch)
+	}; 
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(EditThingButton)

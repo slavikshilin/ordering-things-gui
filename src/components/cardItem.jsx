@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from "redux"; 
+import { connect } from 'react-redux'; 
 import { List, Card, Upload, Icon, message, Tooltip, Modal, Spin } from 'antd';
 import Img from 'react-image';
 import ThingInfoPopover from './thingInfoPopover';
 import EditThingButton from './editThing/editThingButton';
 import Lightbox from '../lib/index';
+import * as thingsActions from '../actions/thingsActions';  
+import * as galleryActions from '../actions/galleryActions';
 
 const { Meta } = Card;
 const { confirm } = Modal;
@@ -61,7 +65,7 @@ class CardItem extends Component {
     }
 
     render() {
-        const { thingAdd, item, gallery, galleryActions, thingsActions, thingAddActions } = this.props;
+        const { item, gallery, galleryActions } = this.props;
         const show = (item === gallery.item) && (item.urls);
 
         const defaultUrl = (item.urls) ? Object.values(item.urls)[0].urlSmall : 'https://firebasestorage.googleapis.com/v0/b/ordering-things-api.appspot.com/o/default%2Fempty.jpg?alt=media&token=427e09b3-98ac-4967-b058-74c99a039f86';
@@ -86,8 +90,7 @@ class CardItem extends Component {
                                     accept="image/*"
                                     name="fileAdd"
                                     showUploadList={false}
-                                    beforeUpload={this.beforeUpload.bind(this)}
-                                >
+                                    beforeUpload={this.beforeUpload.bind(this)} >
 
                                     <Tooltip placement="bottomLeft" title="Добавить фото">
                                         <Icon type="file-add" />
@@ -96,7 +99,7 @@ class CardItem extends Component {
 
                                 <ThingInfoPopover thingInfo={item} />,
 
-                                <EditThingButton thingAdd={thingAdd} thingInfo={item} thingsActions={thingsActions} thingAddActions={thingAddActions} />,
+                                <EditThingButton thingInfo={item} />,
 
                                 <Tooltip placement="bottomLeft" title="Удалить">
                                     <Icon type="delete" onClick={this.showDeleteConfirm.bind(this)} />
@@ -116,4 +119,20 @@ class CardItem extends Component {
     }
 }
 
-export default CardItem
+const mapStateToProps = store => {
+    return {
+        gallery: store.gallery,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        thingsActions: bindActionCreators(thingsActions, dispatch),
+        galleryActions: bindActionCreators(galleryActions, dispatch)
+	}; 
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(CardItem)
