@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Icon, Modal, Tooltip } from 'antd';
 import AddThingContent from './addThingContent';
 import * as thingAddActions from '../../actions/thingAddActions'; 
+import * as thingsActions from '../../actions/thingsActions';
 
 const confirm = Modal.confirm;
 
@@ -72,7 +73,8 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        thingAddActions: bindActionCreators(thingAddActions, dispatch)
+        thingAddActions: bindActionCreators(thingAddActions, dispatch),
+        thingsActions: bindActionCreators(thingsActions, dispatch),
 	}; 
 }
 
